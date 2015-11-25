@@ -1,0 +1,159 @@
+<html>
+<head>
+	<title>Historia Clinica Electrónica - Epicrisis</title>
+	
+	<style type="text/css">  
+		div.header {
+			margin: 1cm 0cm 0cm 0cm;  
+			width:80%;
+		    display: block; text-align: center; 
+		    position: running(header);
+		    
+		}
+		div.footer {
+		    display: block; text-align: center;  
+		   
+		    position: running(footer);
+		}
+		@page {  
+		    margin: 3.5cm 1cm 2cm 1.5cm;  
+		}
+		@page {
+		     @top-center { content: element(header) }
+		}
+		@page { 
+		    @bottom-center { content: element(footer) }
+		}
+		body
+		{
+			/* Font */
+			font-family: font-family: Calibri, Candara, Segoe, Optima, Arial, sans-serif;
+			font-size: 14px;
+		
+			/* Text color */
+			color: #333;
+			/*margin: 20px;*/
+		}
+		h2{
+			margin: 0px 0px 0px 0px;
+			font-weight: normal;
+		}
+		h4{
+			margin: 0px 0px 0px 0px;
+			
+		}
+		 p
+		{
+			font-size: 14px;
+			line-height: 17px;
+			margin: 0px 0px 0px 0px;
+			text-align:justified;
+		}
+		#tituloCarpeta{
+			font-size: 14px;
+			line-height: 2px;
+			margin: 0px 0px 0px 0px;
+			font-weight: bold;		
+		}
+		#textoCarpeta{
+			font-size: 14px;
+			line-height: 2px;
+			margin: 0px 0px 0px 0px;		
+		}
+		#tituloEpicrisis{
+			font-size: 16px;
+			font-weight: bold;
+		}	
+	</style>
+</head>
+
+<body>
+	<div class='header'>
+			<img  src="http://localhost:8090/he_fe/images/encabezado.png"/>
+	</div>
+	<div style="margin-top:2%; width:8,27in; font-family: Calibri, Candara, Segoe, Optima, Arial, sans-serif;">
+		
+			<div style="width:100%; text-align:center; font-size:18px;">
+				<h2 style="padding-bottom: 0%;">Epicrisis</h2>
+			    <h4 style="padding-bottom: 0%;">Servicio de Clinica Medica</h4>
+			</div>
+		
+			<div style="width:100%;padding-top: 4%; float:left; font-family: Calibri, Candara, Segoe, Optima, Arial, sans-serif;">
+			   <div style="float:left;"><label id="tituloCarpeta">PACIENTE: </label><label>$carpeta.paciente</label></div><div style="padding-left: 60%;float:rigth;"><label id="tituloCarpeta">HISTORIA CLINICA N°: </label><label>$carpeta.carpeta</label></div>
+			   
+			   <div style="float:left;"><label id="tituloCarpeta">DNI: </label><label> $carpeta.dniPaciente</label></div><div style="padding-left: 30%;float:left"><label id="tituloCarpeta"> EDAD: </label><label>$carpeta.edad </label></div><div style="padding-left:70%;float:rigth;"><label id="tituloCarpeta">SEXO:</label><label> $carpeta.sexo</label></div>
+			   
+			   <div><label id="tituloCarpeta">OBRA SOCIAL: </label>
+			   		<label> $carpeta.mutuales </label>
+			   	</div>
+			   #if( $epicrisis.telefonoContacto )
+				   <div><label id="tituloCarpeta">TELEFONO DE CONTACTO:  </label>
+				   <label>$epicrisis.telefonoContacto</label></div>
+				#end
+			</div>
+			
+			<div style="width:100%;padding-top: 3%; float:left; font-family: Calibri, Candara, Segoe, Optima, Arial, sans-serif;">
+			   <div style="float:left;"><label id="tituloCarpeta">FECHA INGRESO: </label> <label>$carpeta.fechaIngreso </label></div>
+			   <div style="padding-left: 60%;float:rigth;"><label id="tituloCarpeta">FECHA ALTA:</label> <label>$carpeta.fechaAltaMedica</label> </div>
+			   <div><label id="tituloCarpeta">CONDICION DE ALTA: </label><label> $carpeta.condicionAlta</label></div>
+			   <div><label id="tituloCarpeta">MOTIVO DE INTERNACION: </label><label> $carpeta.diagnostico</label></div>
+			   <div><label id="tituloCarpeta">MEDICO DE CABECERA: </label><label>$carpeta.profCabecera</label></div>
+			   
+			</div>
+			
+			<div style="width:100%; padding-top: 4%; float:left;">
+				
+				#if( $carpeta.diagnosticoEgreso)
+				  <div style="padding-top: 2%;"> <label id="tituloEpicrisis">DIAGNOSTICO DE ALTA</label> </div>
+				  <div> <p>$carpeta.diagnosticoEgreso</p></div>
+				#end
+				
+				#if( $epicrisis.enfermedadActual && $epicrisis.enfermedadActual != "" )
+				  <div style="padding-top: 2%;"> <label id="tituloEpicrisis">ENFERMEDAD ACTUAL Y ANTECEDENTES</label> </div>
+				  <div> <p>$epicrisis.enfermedadActual</p></div>
+				#end
+				
+				#if( $epicrisis.estudiosComplementarios && $epicrisis.estudiosComplementarios != "")
+				  <div style="padding-top: 2%;"> <label id="tituloEpicrisis"> ESTUDIOS COMPLEMENTARIOS </label> </div> 
+				  <div> <p>$epicrisis.estudiosComplementarios</p></div>
+			    #end
+			    
+			    #if( $epicrisis.evolucion  && $epicrisis.evolucion != "")
+				  <div style="padding-top: 2%;"> <label id="tituloEpicrisis">EVOLUCION Y COMENTARIOS</label> </div>
+				  <div style="width:100%; text-align:justified;">$epicrisis.evolucion</div>
+				#end
+			    
+				#if( $epicrisis.tratamiento && $epicrisis.tratamiento != "" )
+				  <div style="padding-top: 2%;"> <label id="tituloEpicrisis"> TRATAMIENTO</label>  </div>
+				  <div> <p>$epicrisis.tratamiento</p> </div>
+			 	#end
+				#if( $epicrisis.diagnosticoAlta && $epicrisis.diagnosticoAlta != "")
+					  <div style="padding-top: 2%;"> <label id="tituloEpicrisis">DIAGNOSTICO DE ALTA  </label> </div>
+					  <div> <p> $epicrisis.diagnosticoAlta</p> </div>
+			  	#end
+				#if( $epicrisis.indicacionesAlta && $epicrisis.indicacionesAlta != "")
+				  <div style="padding-top: 2%;"><label id="tituloEpicrisis">INDICACIONES DE ALTA </label> </div>
+				  <div> <p>$epicrisis.indicacionesAlta</p> </div>
+			    #end
+			</div>
+		
+			<div style="width:100%; padding-top: 3%; float:left;">
+				#if( $epicrisis.estudiosPendientes && $epicrisis.estudiosPendientes != "" )
+				   <div id=""><label id="tituloCarpeta">CONSULTAS O ESTUDIOS PENDIENTES:</label>
+				   <label id="">$epicrisis.estudiosPendientes</label></div>
+				#end
+				#if( $epicrisis.proximoControl && $epicrisis.proximoControl != "" )
+				   <div id=""><label id="tituloCarpeta">PROXIMO CONTROL: </label>
+				   <label id="">$epicrisis.proximoControl</label></div>
+				#end
+				
+			</div>			
+	</div>
+	
+	
+	<div class='footer'>
+		<img  src="http://localhost:8090/he_fe/images/pieDePagina.jpg" width="700"/>
+	</div>
+
+</body>
+</html>

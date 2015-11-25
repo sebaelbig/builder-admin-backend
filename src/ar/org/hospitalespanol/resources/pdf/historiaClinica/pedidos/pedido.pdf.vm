@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title>Historia Clinica ElectrÃ³nica - Informe de pedido</title>
+	
+	<style type="text/css">  
+		@page {  
+		    margin: 4.5cm 1.5cm 2cm 1.5cm;  
+		}
+		
+		body
+		{
+			/* Font */
+			font-family: font-family: Calibri, Candara, Segoe, Optima, Arial, sans-serif;
+			font-size: 14px;
+		
+			/* Text color */
+			color: #333;
+			margin: 20px;
+		}
+		 p
+		{
+			font-size: 14px;
+			line-height: 17px;
+			margin: 0px 5px 0px 5px;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<div style="width: 8,27in; font-family: Calibri, Candara, Segoe, Optima, Arial, sans-serif;">
+	
+		<div style="width:100%; float:left; ">
+		
+			#foreach( $itemLista in $listaAImprimir )
+			
+				#if( $itemLista.valor )
+					<div class="item" style="display: inline-block; vertical-align: middle; $itemLista.estilo">
+					
+						<div style="width: auto; display: inline-block; vertical-align: middle;">
+							$itemLista.label
+						</div>
+						<span style="display: inline-block; vertical-align: middle;">$itemLista.valor</span>
+						
+					</div>
+				#end
+				
+			#end
+			
+		</div>
+			
+		<div style="width:100%; float:left;">
+		    
+		    #if( $elemento.texto )
+			    <h3>Informe:</h3>
+
+			    <div style="width:100%; text-align:justified; padding-right: 3px; float:left;">
+
+			    	$elemento.texto 
+			    </div>
+
+			    <div style="width:45%;float: right; text-align:center; font-size:12px;">
+			    	$elemento.firmaEfector
+		    	</div>
+	    	#else
+	    		<h3>El informe NO tiene texto..</h3>
+	    	#end
+		</div>
+			
+	</div>
+</body>
+</html>

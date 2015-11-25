@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" xml:lang="es-419">
+	<title>Ver quirófanos</title>
+
+	<!--  Semantic UI -->
+	<link href="../css/table.min.css" rel="stylesheet" media="screen"> 
+	<link href="../css/header.min.css" rel="stylesheet" media="screen"> 
+	<link href="../css/modal.min.css" rel="stylesheet" media="screen"> 
+	<link href="../css/form.min.css" rel="stylesheet" media="screen"> 
+	
+	
+	<!--  Date picker -->
+	<link rel="stylesheet" href="../pickdate/themes/style.css">
+	<link rel="stylesheet" href="../pickdate/themes/default.css">
+	<link rel="stylesheet" href="../pickdate/themes/default.date.css">
+
+	<!-- Modal	-->
+	<link href="../css/estilo_dialogo.css" rel="stylesheet" media="screen"> 
+
+</head>
+
+<body >
+
+<div class="ui blue header">Reserva de salas quirúrgicas del día: 
+<input class="datepicker" type="date" placeholder="Seleccione el día a mostrar" id="diaActual">
+</div>
+
+<table class="ui celled table segment">
+	<thead >
+		<th>Hora</th>
+		<th>Sala 1</th>
+		<th>Sala 2</th>
+		<th>Sala 3</th>
+		<th>Sala 4</th>
+		<th>Sala 5</th>
+	</thead>
+	
+	<tbody id="bodySalas"></tbody>
+</table>
+
+<div class="oculto" id="informacionDeLaReserva">
+	  
+	  <div class="header">Reserva</div>
+
+	  <div class="content">
+
+	  	<div class="ui small form segment">
+
+		  <div class="two fields">
+		    <div class="field">
+		      <label>N° </label>
+		      <input type="text" disabled="disabled" id="numero"  style="text-transform: capitalize;"/>
+		      <!-- <input type="text" disabled="disabled" id="numero" /> -->
+		    </div>
+		    <div class="field">
+		      <label>Sala</label>
+		      <input type="text" disabled="disabled" id="sala" style="text-transform: capitalize;" />
+		    </div>
+		  </div>
+
+		  <div class="two fields">
+		    <div class="field">
+		      <label>Habitacion° </label>
+		      <input type="text" disabled="disabled" id="habitacion"  style="text-transform: capitalize;"/>
+		    </div>
+		    <div class="field">
+		      <label>Paciente</label>
+		      <input type="text" disabled="disabled" id="paciente"  style="text-transform: capitalize;"/>
+		    </div>
+		  </div>
+
+		  <div class="two fields">
+		    <div class="date field">
+		      <label>Fecha Reserva </label>
+		      <input type="text" disabled="disabled" id="fechaReservaSala"  style="text-transform: capitalize;"/>
+		    </div>
+		    <div class="field">
+		      <label>Cirug&iacute;a Programada</label>
+		      <input type="text" disabled="disabled" id="cirugiaProgramada"  style="text-transform: capitalize;"/>
+		    </div>
+		  </div>
+
+		  <div class="two fields">
+		    <div class="date field">
+		      <label>Horario desde </label>
+		      <input type="text" disabled="disabled" id="horaInicio"  style="text-transform: capitalize;"/>
+		    </div>
+		    <div class="date field">
+		      <label>a</label>
+		      <input type="text" disabled="disabled" id="horaFin"  style="text-transform: capitalize;"/>
+		    </div>
+		  </div>
+
+		  <h2 class="ui red header">Equipo m&eacute;dico</h2>
+		  <div class="two fields">
+		    <div class="field">
+		      <label>Profesional </label>
+		      <input type="text" disabled="disabled" id="profesional"  style="text-transform: capitalize;"/>
+		    </div>
+		    <div class="field">
+		      <label>Instrumentista</label>
+		      <input type="text" disabled="disabled" id="instrumentista"  style="text-transform: capitalize;"/>
+		    </div>
+		  </div>
+
+		  <div class="two fields">
+		    <div class="field">
+		      <label>P&aacute;tologo </label>
+		      <input type="text" disabled="disabled" id="patologo"  style="text-transform: capitalize;"/>
+		    </div>
+		    <div class="field">
+		      <label>Anestesista</label>
+		      <input type="text" disabled="disabled" id="anestesista"  style="text-transform: capitalize;"/>
+		    </div>
+		  </div>
+
+	    <div class="field">
+	      <label>Pediatra </label>
+	      <input type="text" disabled="disabled" id="pediatra"  style="text-transform: capitalize;"/>
+	    </div>
+
+	  </div>
+
+	  <div class="actions">
+	    <div class="ui blue submit button" onclick="ocultarCartel(true)">Cerrar</div>
+	  </div>
+
+	</div>
+</div>
+
+<script type="text/javascript" src="js/dojo.js"></script>
+<script type="text/javascript" src="../js/dialogo.js"></script>
+<script type="text/javascript" src="../js/drag_and_drop.js"></script>
+<script type="text/javascript" src="../js/variables_globales.js"></script>
+<script type="text/javascript" src="../js/funciones_de_posicionamiento.js"></script>
+
+<script type="text/javascript" src="../js/cirugias/quirofanos.js"></script>
+<script src="../pickdate/jquery.1.7.0.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.10.4.custom.js"></script>
+
+<script src="../pickdate/picker.js"></script>
+<script src="../pickdate/picker.date.js"></script>
+<script src="../pickdate/legacy.js"></script>
+<script src="../pickdate/es_ES.js"></script>
+
+<div class="oculto" id="navegadorIncompatible" style="padding-top: 22px;">
+	  
+    <div class="ui red piled segment">
+     	<p>El navegador que est&aacute; utilizando no es compatible y la aplicaci&oacute;n puede no funcionar correctamente.</p>
+     	<p>Se recomienda utilizar <a href="https://www.google.com/intl/es/chrome/browser/index.html?system=true&standalone=1#eula" target="blank">Google Chrome&reg;</a> o <a href="http://www.microsoft.com/es-es/download/details.aspx?id=40902" target="blank">Internet Explorer&reg; 11</a></p>
+    </div>
+
+  	<div class="actions" >
+		<div class="ui blue submit button" style="cursor:pointer;" onclick="ocultarCartel(true)">Cerrar</div>
+  	</div>
+
+</div>
+
+<script type="text/javascript">
+
+    var $input = $( '.datepicker' ).pickadate({
+        format: 'dd/mm/yyyy',
+        selectYears: true,
+        selectMonths: true
+    })
+
+    var picker = $input.pickadate('picker');
+
+   	picker.on('set', function(event) {
+   		
+   		fechaSeleccionada = picker.get('select', 'dd/mm/yyyy');
+		obtenerReservas(fechaSeleccionada);
+   		
+    });
+
+   	dojo.addOnLoad( function(){
+    	if (isBrowserCompatibility()){
+			obtenerReservas( dateToString( new Date() ) ); 
+    	}else{
+    		mostrarDiv("Navegador incompatible",  document.getElementById("navegadorIncompatible"));	
+    	}
+
+	});
+</script>
+
+</body>
+</html>

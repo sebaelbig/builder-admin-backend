@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Historia Clinica Electrónica - Informe de pedido</title>
+</head>
+<body style="width: 8,27in;">
+	
+	<div style="width:100%; float:left; text-align:center;" >
+		<h1>Historia Clinica Electrónica</h1> 
+		<h2>Informe de pedido</h2>
+	</div>
+	
+	<div style="width:100%; float:left; margin-top: 3cm;">
+	
+		#foreach( $itemLista in $listaAImprimir )
+		
+			#if( $itemLista.valor )
+				<div class="item" style="display: inline-block; vertical-align: middle; $itemLista.estilo">
+				
+					<div style="width: auto; display: inline-block; vertical-align: middle;">
+						$itemLista.label
+					</div>
+					<span style="display: inline-block; vertical-align: middle;">$itemLista.valor</span>
+					
+				</div>
+			#end
+			
+		#end
+		
+	</div>
+		
+	<div style="width:100%; float:left;">
+	    
+	    #if( $elemento.texto )
+		    <h3>Informe:</h3>
+		    <div style="width:100%; padding: 20px;">
+		    	$elemento.texto 
+		    </div>
+		    <span style="width:30%;float: right;" >
+		    	$elemento.firmaEfector
+	    	</span>
+    	#else
+    		<h3>El informe NO tiene texto..</h3>
+    	#end
+	</div>
+			
+</body>
+</html>
