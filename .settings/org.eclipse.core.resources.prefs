@@ -3,7 +3,4 @@ encoding//WebContent/META-INF/ldap.properties=UTF-8
 encoding//WebContent/META-INF/persistence-postgres.properties=UTF-8
 encoding//WebContent/WEB-INF/log4j.properties=UTF-8
 encoding//WebContent/WEB-INF/web.xml=UTF-8
-encoding//src/ar/org/hospitalespanol/resources/config.properties=UTF-8
-encoding//src/ar/org/hospitalespanol/resources/log4j.properties=UTF-8
-encoding//src/ar/org/hospitalespanol/resources/mails/historiaClinica/pedidos/mail_informeConfirmado.vm=UTF-8
 encoding/<project>=UTF-8

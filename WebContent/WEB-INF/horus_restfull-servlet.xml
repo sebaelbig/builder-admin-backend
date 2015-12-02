@@ -17,7 +17,7 @@
 
 	<!-- Detects annotations like @Component, @Service, @Controller, @Repository, 
 		@Configuration -->
-	<context:component-scan base-package="ar.org.hospitalespanol.controllers, ar.org.hospitalespanol.ws, ar.org.hospitalespanol.dao, ar.org.hospitalespanol.ldap" />
+	<context:component-scan base-package="ar.com.builderadmin.controllers, ar.com.builderadmin.ws, ar.com.builderadmin.dao, ar.com.builderadmin.ldap" />
 	
 	<context:property-placeholder location="/META-INF/ldap.properties" />
 	
@@ -26,9 +26,9 @@
 	
     <!-- Configuring interceptors based on URI -->
 	<mvc:interceptors>
-		<beans:bean class="ar.org.hospitalespanol.security.interceptors.TokenAuthenticationInterceptor"></beans:bean>
-		<beans:bean class="ar.org.hospitalespanol.security.interceptors.WebContextHolderInterceptor"></beans:bean>
-		<beans:bean class="ar.org.hospitalespanol.security.interceptors.IECacheInterceptor"></beans:bean>
+		<beans:bean class="ar.com.builderadmin.security.interceptors.TokenAuthenticationInterceptor"></beans:bean>
+		<beans:bean class="ar.com.builderadmin.security.interceptors.WebContextHolderInterceptor"></beans:bean>
+		<beans:bean class="ar.com.builderadmin.security.interceptors.IECacheInterceptor"></beans:bean>
 	</mvc:interceptors>
 	
 	<!-- 	LDAP -->
