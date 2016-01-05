@@ -127,7 +127,6 @@ public class FichaDeConsumo_VO implements I_ValueObject<FichaDeConsumo> {
 		this.getUsuario().setApellido(usr.getApellido());
 		this.getUsuario().setNombres(usr.getNombres());
 		this.getUsuario().setNombreUsuario(usr.getNombreUsuario());
-		this.getUsuario().setSexo(usr.getSexo());
 		this.getUsuario().setTipoDocumento(usr.getTipoDocumento());
 		this.getUsuario().setNroDocumento(usr.getNroDocumento());
 

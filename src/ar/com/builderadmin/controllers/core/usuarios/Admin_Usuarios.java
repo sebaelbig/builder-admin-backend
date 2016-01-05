@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ldap.core.LdapTemplate;
 import org.springframework.stereotype.Controller;
 
 import com.google.gson.Gson;
@@ -14,7 +13,6 @@ import ar.com.builderadmin.controllers.Admin_Alertas;
 import ar.com.builderadmin.controllers.JSON_Paginador;
 import ar.com.builderadmin.controllers.JSON_Respuesta;
 import ar.com.builderadmin.controllers.Paginador;
-import ar.com.builderadmin.dao.AD_Service;
 import ar.com.builderadmin.dao.DAO;
 import ar.com.builderadmin.dao.DAO_Utils;
 import ar.com.builderadmin.dao.core.usuarios.DAO_Usuario;
@@ -32,7 +30,6 @@ import ar.com.builderadmin.fx.core.usuarios.roles.FX_GetSoloRolesDeUsuario;
 import ar.com.builderadmin.fx.core.usuarios.roles.FX_ModificarRol;
 import ar.com.builderadmin.fx.core.usuarios.roles.profesionales.FX_CrearFirmaProfesional;
 import ar.com.builderadmin.fx.historiaClinica.FX_ModificarFirmaProfesional;
-import ar.com.builderadmin.ldap.vo.UsuarioLDAP_VO;
 import ar.com.builderadmin.model.core.usuarios.roles.Rol;
 import ar.com.builderadmin.vo.core.usuarios.Usuario_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.Rol_VO;
@@ -215,10 +212,6 @@ public class Admin_Usuarios extends Admin_Abstracto<Usuario_VO> {
 		return resp;
 	}
 	
-	
-	@Autowired
-	private LdapTemplate ldapTemplate;
-	
 	@SuppressWarnings("unchecked")
 	public JSON_Respuesta getUsuarioPorUsername(String nombreUsuario, String usuarioAccion) {
 		
@@ -294,115 +287,19 @@ public class Admin_Usuarios extends Admin_Abstracto<Usuario_VO> {
 		//Lo traigo del AD para absorber los datos
 //		UsuarioLDAP user = ldapTemplate.findOne(query().where("sAMAccountName").is(nombreUsuario), UsuarioLDAP.class);
 //		Usuario_VO usr = new Usuario_VO(user);
-		UsuarioLDAP_VO user = AD_Service.findAccountByAccountName(nombreUsuario);
+		Usuario_VO user = getDao_Usuario().buscarPorNombreUsuario(nombreUsuario);
 		
 		if (user!=null){
 			//El usuario existe
-			Usuario_VO usr = new Usuario_VO(user);
+//			Usuario_VO usr = new Usuario_VO(user);
 			
-			return new FX_CrearUsuario(getDao(), usr, usuarioAccion).ejecutar(admin_Alertas);
+			return new FX_CrearUsuario(getDao(), user, usuarioAccion).ejecutar(admin_Alertas);
 		}else{
 			return new JSON_Respuesta( "El usuario "+nombreUsuario+ " NO existe como usuario válido en el hospital.");
 		}
 	}
 
 	
-	public String crearFirma(FirmaProfesional_VO firma, String usuarioAccion) {
-		@SuppressWarnings("unchecked")
-		DAO_FirmaProfesional daoFirma = (DAO_FirmaProfesional) getDao().getInstance(DAO_FirmaProfesional.class);
-		
-		FX_CrearFirmaProfesional fx_crearFirma = new FX_CrearFirmaProfesional(daoFirma, firma, usuarioAccion);
-		
-		return ejecutarFuncion(fx_crearFirma);
-	}
-	
-	public String modificarFirma(FirmaProfesional_VO firma,Long idRol, String usuarioAccion) {
-		
-		firma.setNroMatricula(((Rol)this.getDao_rol().findById(idRol)).getValorTipoID());
-		
-		FX_ModificarFirmaProfesional fx_crearFirma = new FX_ModificarFirmaProfesional(this.getDao_firma(), firma, usuarioAccion);
-		
-		return ejecutarFuncion(fx_crearFirma);
-	}
-
-	
-	public String recuperarFirmaDeUsuario(String usuario, String usuarioAccion) {
-
-		JSON_Respuesta respuesta = getUsuarioPorUsername(usuario, usuarioAccion);
-		
-		if (respuesta.getOk()){
-			Usuario_VO usr = (Usuario_VO)respuesta.getPaginador().getElementoUnico();
-			
-			//Me fijo si el usuario es medico
-			Rol_VO medico = usr.getRolMedico();
-			
-			if (medico == null){
-				//El usuario no es medico
-				respuesta.setOk(false);
-				respuesta.setMensaje("El usuario "+usuario+" NO es un médico del hospital, o no tiene el Rol correspondiente asociado.");
-			
-			}else{
-				//Recupero la firma del medico
-				DAO_FirmaProfesional daoFirma = (DAO_FirmaProfesional) getDao().getInstance(DAO_FirmaProfesional.class);
-				FirmaProfesional_VO f = daoFirma.recuperarEntidadDeUsuario(medico.getValorTipoID());
-				
-				if (f==null){
-					//El medico No tenia una firma
-					f = new FirmaProfesional_VO();
-					f.setUsuario(usuario);
-					f.setNroMatricula(medico.getValorTipoID());
-				}
-				
-				respuesta.setPaginador(JSON_Paginador.solo(f));
-				respuesta.setOk(true);
-			}
-		
-		}else{
-			//El usuario no es medico
-			respuesta.setOk(false);
-			respuesta.setMensaje(respuesta.getMensaje());
-		
-		}
-		
-		return new Gson().toJson(respuesta);
-	}
-	
-	public String recuperarFirmaPorIdRol(String idRol, String usuarioAccion) {
-
-		JSON_Respuesta respuesta = new JSON_Respuesta(); 
-		try{
-			Rol rol = (Rol)this.getDao_rol().findById(Long.parseLong(idRol));
-			
-			List<FirmaProfesional_VO> firmasProfesional =	this.getDao_firma().buscarPorMatricula(rol.getValorTipoID(), usuarioAccion);
-			
-			//TODO Si no existe, crearla
-			
-			if(firmasProfesional.size()==0){
-				DAO_ProfesionalHE daoProfeHE = (DAO_ProfesionalHE) getDao().getInstance(DAO_ProfesionalHE.class);
-				ProfesionalHE_VO profeActuanteHE = daoProfeHE.recuperarEntidad(Integer.parseInt(rol.getValorTipoID()));
-				FirmaProfesional_VO firmaProfesional = new FirmaProfesional_VO(profeActuanteHE,usuarioAccion);
-				this.crearFirma(firmaProfesional, usuarioAccion);
-				firmasProfesional.add(firmaProfesional);
-			}
-			
-			respuesta.setPaginador(new JSON_Paginador(firmasProfesional));
-						
-		}catch(Exception ex){
-			respuesta.setOk(false);
-			respuesta.setMensaje("No se pudo recuperar la firma del profesional");
-		}
-		
-		return new Gson().toJson(respuesta);
-	}
-
-	public String getDatosDePacienteWeb(String usuario){
-		/*Traigo tipo y num de Doc del paciente web*/
-		
-		String datos= getDao_Usuario().getDatosPacienteWeb(usuario);
-		return getGson().toJson(datos); 
-
-		
-	}
 	/**
 	 * @return the dao_rol
 	 */

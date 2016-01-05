@@ -15,9 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import ar.com.builderadmin.dao.DAO;
-import ar.com.builderadmin.dao.DAO_Utils;
 import ar.com.builderadmin.dao.DBPropertiesReader;
-import ar.com.builderadmin.ldap.modelo.RolDeUsuarioHE;
 import ar.com.builderadmin.vo.core.usuarios.roles.RolHESimpleAdapter;
 import ar.com.builderadmin.vo.core.usuarios.roles.RolHE_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.TipoDeRol_VO;
@@ -345,25 +343,7 @@ public class DAO_RolHE extends DAO<RolHE_VO> {
 		
 		R_GetRolesDeUsuario resul = new R_GetRolesDeUsuario();
 		
-		
 		//Borrar a partir de aca
-////		resul.setOk(true);
-////		
-////		List<RolDeUsuarioHE> roles = new ArrayList<>();
-////		RolDeUsuarioHE rol = new RolDeUsuarioHE();
-////		
-////		rol.setCodigo_tipo_id("LEG");		
-////		rol.setEstado("ACTIVO");
-////		rol.setFecha("23/08/2014 11:00");
-////		rol.setId_rol("EMP");
-////		rol.setIdhe("11222");
-////		rol.setLogin("sebastianga");
-////		rol.setRol("EMPLEADO");
-////		rol.setUsuario("sebastianga");
-////		
-////		roles.add(rol);
-////		
-////		resul.setRoles(roles );
 		Connection con = getConexionHE();
 		try {
 			if (con != null) {
@@ -389,9 +369,6 @@ public class DAO_RolHE extends DAO<RolHE_VO> {
 				resul = new Gson()
 						.fromJson(sp_horus_get_rolesDeUsuario, R_GetRolesDeUsuario.class);
 				
-				for (RolDeUsuarioHE rolUsr : resul.getRoles()) {
-					rolUsr.setUsuario(usuarioLDAP);
-				}
 			}
 		} catch (NoResultException e) {
 			e.printStackTrace();
@@ -415,69 +392,67 @@ public class DAO_RolHE extends DAO<RolHE_VO> {
 	}
 
 	
-	public R_SetRolDeUsuario setRolDeUsuario(RolDeUsuarioHE rol){
-		
-		R_SetRolDeUsuario resul = new R_SetRolDeUsuario();
-
-		Connection con = getConexionHE();
-		try {
-			if (con != null) {
-				CallableStatement pstmt = con
-						.prepareCall("{call sp_horus_set_rolDeUsuario(?,?,?,?,?,?,?)}");
-				
-				Object[] s = new Object[7];
-				
-				// id, rol, usuario, estado
-				s[0] = rol.getUsuario();
-				s[1] = rol.getId_rol();
-				s[2] = rol.getCodigo_tipo_id();
-				s[3] = rol.getIdhe();
-				s[4] = rol.getLogin();
-				s[5] = rol.getEstado();
-
-				pstmt.setString(1, (String) s[0]);
-				pstmt.setString(2, (String) s[1]);
-				pstmt.setString(3, (String) s[2]);
-				pstmt.setString(4, (String) s[3]);
-				pstmt.setString(5, (String) s[4]);
-				pstmt.setString(6, (String) s[5]);
-
-				pstmt.setString(7, "");
-				pstmt.registerOutParameter(7, -1);
-
-				String detalle = "Llamando: 4.2.3	sp_horus_set_rolDeUsuario (" + s[0]
-						+ "," + s[1] + "," + s[2] + "," + s[3] + "," + s[4]+ "," + s[5] + ")";
-				DAO_Utils.info(log, "DAO_RolHE", "setRolDeUsuario",getUsuarioAccion(), detalle);
-				
-				System.out.println();
-				
-				pstmt.execute();
-				String sp_horus_get_rolesDeUsuario = pstmt.getString(7);
-
-				this.log.info("Resultado obtenido: " + sp_horus_get_rolesDeUsuario,
-						new Object[0]);
-				System.out.println("Resultado obtenido: " + sp_horus_get_rolesDeUsuario);
-
-				resul = new Gson()
-//				resul = new GsonBuilder()
-//						.registerTypeAdapter(RolHE_VO.class,
-//								new RolHESimpleAdapter()).create()
-						.fromJson(sp_horus_get_rolesDeUsuario, R_SetRolDeUsuario.class);
-			}
-		} catch (NoResultException e) {
-			e.printStackTrace();
-			cerrarConexion(con);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			cerrarConexion(con);
-		} finally {
-			cerrarConexion(con);
-		}
-		
-		return resul; 
-	}
-	
-	
+//	public R_SetRolDeUsuario setRolDeUsuario(RolDeUsuarioHE rol){
+//		
+//		R_SetRolDeUsuario resul = new R_SetRolDeUsuario();
+//
+//		Connection con = getConexionHE();
+//		try {
+//			if (con != null) {
+//				CallableStatement pstmt = con
+//						.prepareCall("{call sp_horus_set_rolDeUsuario(?,?,?,?,?,?,?)}");
+//				
+//				Object[] s = new Object[7];
+//				
+//				// id, rol, usuario, estado
+//				s[0] = rol.getUsuario();
+//				s[1] = rol.getId_rol();
+//				s[2] = rol.getCodigo_tipo_id();
+//				s[3] = rol.getIdhe();
+//				s[4] = rol.getLogin();
+//				s[5] = rol.getEstado();
+//
+//				pstmt.setString(1, (String) s[0]);
+//				pstmt.setString(2, (String) s[1]);
+//				pstmt.setString(3, (String) s[2]);
+//				pstmt.setString(4, (String) s[3]);
+//				pstmt.setString(5, (String) s[4]);
+//				pstmt.setString(6, (String) s[5]);
+//
+//				pstmt.setString(7, "");
+//				pstmt.registerOutParameter(7, -1);
+//
+//				String detalle = "Llamando: 4.2.3	sp_horus_set_rolDeUsuario (" + s[0]
+//						+ "," + s[1] + "," + s[2] + "," + s[3] + "," + s[4]+ "," + s[5] + ")";
+//				DAO_Utils.info(log, "DAO_RolHE", "setRolDeUsuario",getUsuarioAccion(), detalle);
+//				
+//				System.out.println();
+//				
+//				pstmt.execute();
+//				String sp_horus_get_rolesDeUsuario = pstmt.getString(7);
+//
+//				this.log.info("Resultado obtenido: " + sp_horus_get_rolesDeUsuario,
+//						new Object[0]);
+//				System.out.println("Resultado obtenido: " + sp_horus_get_rolesDeUsuario);
+//
+//				resul = new Gson()
+////				resul = new GsonBuilder()
+////						.registerTypeAdapter(RolHE_VO.class,
+////								new RolHESimpleAdapter()).create()
+//						.fromJson(sp_horus_get_rolesDeUsuario, R_SetRolDeUsuario.class);
+//			}
+//		} catch (NoResultException e) {
+//			e.printStackTrace();
+//			cerrarConexion(con);
+//		} catch (Exception e1) {
+//			e1.printStackTrace();
+//			cerrarConexion(con);
+//		} finally {
+//			cerrarConexion(con);
+//		}
+//		
+//		return resul; 
+//	}
 
 	public class R_SetRolDeUsuario {
 
@@ -515,7 +490,7 @@ public class DAO_RolHE extends DAO<RolHE_VO> {
 		private String mensaje;
 		private Boolean ok;
 
-		private List<RolDeUsuarioHE> roles = new ArrayList<>();
+//		private List<RolDeUsuarioHE> roles = new ArrayList<>();
 
 		public R_GetRolesDeUsuario() {
 		}
@@ -550,20 +525,20 @@ public class DAO_RolHE extends DAO<RolHE_VO> {
 			this.ok = ok;
 		}
 
-		/**
-		 * @return the roles
-		 */
-		public List<RolDeUsuarioHE> getRoles() {
-			return roles;
-		}
-
-		/**
-		 * @param roles
-		 *            the roles to set
-		 */
-		public void setRoles(List<RolDeUsuarioHE> roles) {
-			this.roles = roles;
-		}
+//		/**
+//		 * @return the roles
+//		 */
+//		public List<RolDeUsuarioHE> getRoles() {
+//			return roles;
+//		}
+//
+//		/**
+//		 * @param roles
+//		 *            the roles to set
+//		 */
+//		public void setRoles(List<RolDeUsuarioHE> roles) {
+//			this.roles = roles;
+//		}
 
 	}
 

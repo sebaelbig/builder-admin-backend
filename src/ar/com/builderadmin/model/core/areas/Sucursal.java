@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ import org.eclipse.persistence.annotations.JoinFetchType;
 import ar.com.builderadmin.model.I_Entidad;
 import ar.com.builderadmin.vo.core.areas.Sucursal_VO;
 
-//@Entity
+@Entity
 @Table
 public class Sucursal implements I_Entidad {
 

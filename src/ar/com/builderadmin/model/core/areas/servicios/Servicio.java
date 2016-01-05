@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.core.areas.servicios;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ import ar.com.builderadmin.vo.core.areas.servicios.Servicio_VO;
  * @author Sebastian Valle
  */
 
-//@Entity
+@Entity
 @Table
 public class Servicio implements Serializable, I_Entidad {
 

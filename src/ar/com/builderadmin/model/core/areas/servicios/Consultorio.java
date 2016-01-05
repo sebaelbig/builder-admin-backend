@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -14,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 import ar.com.builderadmin.model.core.especialidades.Especialidad;
 import ar.com.builderadmin.vo.core.areas.servicios.Consultorio_VO;
 
-//@Entity 
+@Entity 
 @Table
 @DiscriminatorValue("division_consultorio")
 public class Consultorio extends Division implements Serializable{

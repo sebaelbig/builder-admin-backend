@@ -1,11 +1,13 @@
 package ar.com.builderadmin.model.core.obrasSociales;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.core.obrasSociales.Coeficientes_UA_VO;
@@ -16,7 +18,7 @@ import ar.com.builderadmin.vo.core.obrasSociales.Coeficientes_UA_VO;
  * @created 19-Ene-2010.
  */
 
-//@Entity @Table( name="coeficientes_ua")
+@Entity @Table( name="coeficientes_ua")
 public class Coeficientes_UA {
 
 	

@@ -13,7 +13,7 @@ import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
-import ar.com.builderadmin.vo.core.usuarios.UsuarioSimpleAdapter;
+import ar.com.builderadmin.vo.core.usuarios.UsuarioBDSimpleAdapter;
 import ar.com.builderadmin.vo.core.usuarios.Usuario_VO;
 import ar.com.builderadmin.vo.core.usuarios.perfiles.Perfil_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.TipoDeRol_VO;
@@ -59,7 +59,7 @@ public class ProfesionalSimpleAdapter implements JsonDeserializer<Profesional_VO
 			if (elem != null){
 				
 				//deserializo el usuario
-				Usuario_VO usr = new UsuarioSimpleAdapter().deserialize(elem, typeOfT, context);
+				Usuario_VO usr = new UsuarioBDSimpleAdapter().deserialize(elem, typeOfT, context);
 				
 				prof.setUsuario(usr);
 			}

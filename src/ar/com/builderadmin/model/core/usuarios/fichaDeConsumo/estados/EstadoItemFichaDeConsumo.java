@@ -5,12 +5,14 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.core.usuarios.fichaDeConsumo.estados.EstadoItemFichaDeConsumo_VO;
@@ -20,7 +22,7 @@ import ar.com.builderadmin.vo.core.usuarios.fichaDeConsumo.estados.EstadoItemFic
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity @Table( name = "estado_item_ficha_de_consumo")
+@Entity @Table( name = "estado_item_ficha_de_consumo")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "estado_ficha_de_consumo", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("estado_base")

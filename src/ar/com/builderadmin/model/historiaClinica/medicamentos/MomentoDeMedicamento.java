@@ -24,7 +24,7 @@ public enum MomentoDeMedicamento {
 	}
 }
 
-// //@Entity @Table
+// @Entity @Table
 // @SequenceGenerator(sequenceName = "seq_momento_de_medicamento", name =
 // "sequence", allocationSize=1)
 // @Name("momento_de_medicamento")

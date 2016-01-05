@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import ar.com.builderadmin.dao.core.usuarios.DAO_Usuario;
 import ar.com.builderadmin.model.core.usuarios.Usuario;
 import ar.com.builderadmin.vo.core.areas.Sucursal_VO;
-import ar.com.builderadmin.vo.core.usuarios.InfoIngresoUsuario;
+import ar.com.builderadmin.vo.core.usuarios.Usuario_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.Rol_VO;
 
 //@Scope(ScopeType.SESSION)
@@ -272,7 +272,8 @@ public class MenuManager {
 
 	// @In(scope=ScopeType.SESSION, value="infoIngresoUsuario")
 	// @Out
-	private InfoIngresoUsuario infoIngresoUsuario;
+//	private InfoIngresoUsuario infoIngresoUsuario;
+	private Usuario_VO infoIngresoUsuario;
 
 	public Boolean getConAyuda() {
 		return this.conAyuda;
@@ -386,19 +387,18 @@ public class MenuManager {
 				if (resul) {
 					// Si todo salio bien, actualizo la respuesta dvalidar
 					// usuario
-					this.infoIngresoUsuario = dao.autenticarUsuario(em,
-							usr.getNombreUsuario(), this.getContrasenaNueva());
+					this.infoIngresoUsuario = dao.autenticarUsuario(usr.getNombreUsuario(), this.getContrasenaNueva());
 				}
 				this.infoIngresoUsuario.setEmail(usr.getEmail());
 			}
 		}
 	}
 
-	public InfoIngresoUsuario getInfoIngresoUsuario() {
+	public Usuario_VO getInfoIngresoUsuario() {
 		return this.infoIngresoUsuario;
 	}
 
-	public void setInfoIngresoUsuario(InfoIngresoUsuario infoIngresoUsuario) {
+	public void setInfoIngresoUsuario(Usuario_VO infoIngresoUsuario) {
 		this.infoIngresoUsuario = infoIngresoUsuario;
 	}
 

@@ -40,7 +40,7 @@ public enum ViaDeAdministracion {
 		return via;
 	}
 }
-// //@Entity @Table
+// @Entity @Table
 // @SequenceGenerator(sequenceName = "seq_via_de_administracion", name =
 // "sequence", allocationSize=1)
 // @Name("viaDeAdministracion")

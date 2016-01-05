@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +31,7 @@ import ar.com.builderadmin.model.core.areas.servicios.Servicio;
 import ar.com.builderadmin.model.historiaClinica.pedidos.estudios.EstudioDePedido;
 import ar.com.builderadmin.vo.historiaClinica.pedidos.Pedido_VO;
 
-//@Entity
+@Entity
 @Table
 public class Pedido implements I_Entidad, I_Bloqueable{
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -26,7 +27,7 @@ import ar.com.builderadmin.vo.core.usuarios.roles.pacientes.Paciente_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:12 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("rol_paciente")
 public class Paciente extends Rol implements Serializable {
 

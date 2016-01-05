@@ -6,7 +6,7 @@
 	id="WebApp_ID" 
 	version="3.0">
   
-  	<display-name>horus_restfull</display-name>
+  	<display-name>builder-admin-backend</display-name>
   
 	<!--   Welcome-file-list -->
   	<welcome-file-list>
@@ -24,7 +24,7 @@
   
 	<!--   REST FULL -->
 	<servlet>
-	    <servlet-name>horus_restfull</servlet-name>
+	    <servlet-name>builder-admin-backend</servlet-name>
 	    <servlet-class>
 			org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
@@ -32,7 +32,7 @@
   	</servlet>
   	
 	<servlet-mapping>
-	  <servlet-name>horus_restfull</servlet-name>
+	  <servlet-name>builder-admin-backend</servlet-name>
 	  <url-pattern>/api/*</url-pattern>
 	</servlet-mapping>
 	

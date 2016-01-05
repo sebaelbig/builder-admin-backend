@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.internacion.habitaciones.camas;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.model.internacion.Reserva;
@@ -22,7 +24,7 @@ import ar.com.builderadmin.model.internacion.habitaciones.camas.estadosCama.Esta
  * @version 1.0
  * @created 03-Sep-2008 08:57:13 a.m.
  */
-//@Entity @Table
+@Entity @Table
 public class Cama implements Serializable {
 
 	/**

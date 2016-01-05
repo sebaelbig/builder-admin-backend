@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,7 +39,7 @@ import ar.com.builderadmin.vo.core.usuarios.roles.Rol_VO;
  * @version 1.0
  * @created 02-Jul-2008 09:57:38 a.m.
  */
-//@Entity
+@Entity
 @Table
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_rol", discriminatorType = DiscriminatorType.STRING)

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.model.internacion.Reserva;
@@ -22,7 +24,7 @@ import ar.com.builderadmin.vo.internacion.habitaciones.camas.AgendaCama_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:09 a.m.
  */
-//@Entity @Table( name = "agenda_cama")
+@Entity @Table( name = "agenda_cama")
 public class AgendaCama implements Serializable {
 
 	/**

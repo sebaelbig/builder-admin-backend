@@ -2,6 +2,7 @@ package ar.com.builderadmin.model.core.areas;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.core.areas.DiaDeAtencion_VO;
 
-//@Entity
+@Entity
 @Table( name = "dia_de_atencion")
 public class DiaDeAtencion implements Serializable {
 

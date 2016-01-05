@@ -7,7 +7,7 @@ import ar.com.builderadmin.model.core.areas.servicios.Servicio;
 import ar.com.builderadmin.model.core.usuarios.Usuario;
 import ar.com.builderadmin.vo.core.usuarios.perfiles.PerfilServicio_VO;
 
-////@Entity
+//@Entity
 //@Table
 public class PerfilServicio implements Serializable, I_Entidad {
 

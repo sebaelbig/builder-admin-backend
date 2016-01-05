@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import org.pojomatic.Pojomatic;
@@ -16,7 +17,7 @@ import ar.com.builderadmin.model.E_Priority;
  * @author segarcia
  *
  */
-//@Entity 
+@Entity
 @Table
 @DiscriminatorValue("alerta_he")
 public class AlertaHE extends Alerta implements Serializable {

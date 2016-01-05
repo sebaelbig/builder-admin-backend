@@ -649,5 +649,13 @@ public abstract class DAO<T> {
 	}
 
 	/************************************************************/
+	public List buscarPorNombre(String valorABuscar) {
+		this.setQueryCondiciones(" WHERE LOWER(" + this.getIdClass()
+		+ "nombre) LIKE :valor ");
+		this.getCondiciones().put("valor",
+				"%" + valorABuscar.toLowerCase() + "%");
+		
+		return listarTodo();
+	}
 
 }

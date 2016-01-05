@@ -1,6 +1,7 @@
 package ar.com.builderadmin.model.core.usuarios.roles.profesionales;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import org.pojomatic.annotations.Property;
 
 import ar.com.builderadmin.model.I_Entidad;
 
-//@Entity
+@Entity
 @Table( name="firma_profesional")
 public class FirmaProfesional implements I_Entidad {
 

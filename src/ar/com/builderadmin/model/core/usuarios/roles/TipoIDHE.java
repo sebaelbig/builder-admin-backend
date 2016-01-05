@@ -1,6 +1,7 @@
 package ar.com.builderadmin.model.core.usuarios.roles;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ import javax.persistence.Version;
 import ar.com.builderadmin.model.I_Entidad;
 import ar.com.builderadmin.vo.core.usuarios.TipoIDHE_VO;
 
-//@Entity
+@Entity
 @Table( name = "tipo_id")
 public class TipoIDHE implements I_Entidad{
 

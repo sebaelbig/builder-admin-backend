@@ -14,14 +14,11 @@ import ar.com.builderadmin.controllers.Paginador;
 import ar.com.builderadmin.dao.DAO_Utils;
 import ar.com.builderadmin.dao.core.usuarios.perfiles.DAO_Perfil;
 import ar.com.builderadmin.dao.core.usuarios.roles.DAO_Rol;
-import ar.com.builderadmin.dao.core.usuarios.roles.DAO_RolHE;
-import ar.com.builderadmin.dao.core.usuarios.roles.DAO_RolHE.R_SetRolDeUsuario;
 import ar.com.builderadmin.fx.I_FX;
 import ar.com.builderadmin.fx.core.usuarios.roles.FX_BuscarRol;
 import ar.com.builderadmin.fx.core.usuarios.roles.FX_CrearRol;
 import ar.com.builderadmin.fx.core.usuarios.roles.FX_EliminarRol;
 import ar.com.builderadmin.fx.core.usuarios.roles.FX_ModificarRol;
-import ar.com.builderadmin.ldap.modelo.RolDeUsuarioHE;
 import ar.com.builderadmin.model.core.usuarios.roles.Rol;
 import ar.com.builderadmin.vo.core.usuarios.perfiles.Perfil_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.Rol_VO;
@@ -142,61 +139,27 @@ public class Admin_Roles extends Admin_Abstracto<Rol_VO> {
 		
 		rol.setLogin(usr);
 		
-		RolDeUsuarioHE rolUsr = new RolDeUsuarioHE(rol);
+		I_FX funcion =  new FX_CrearRol(getDao(), rol, usr);
 		
-		R_SetRolDeUsuario resul = new DAO_RolHE().setRolDeUsuario(rolUsr);
-		
-		if (resul.getOk()){
-			
-			I_FX funcion =  new FX_CrearRol(getDao(), rol, usr);
-			
-			return ejecutarFuncion(funcion);
-		}else{
-			JSON_Respuesta res =  new JSON_Respuesta(resul.getMensaje());
-			
-			return getGson().toJson(res);
-		}
+		return ejecutarFuncion(funcion);
 	}
 	
 	@Override
 	public String modificar(Rol_VO rol, String usr) {
 		rol.setLogin(usr);
 		
-		RolDeUsuarioHE rolUsr = new RolDeUsuarioHE(rol);
-		
-		R_SetRolDeUsuario resul = new DAO_RolHE().setRolDeUsuario(rolUsr);
-		
-		if (resul.getOk()){
+		I_FX funcion =  new FX_ModificarRol(getDao(), rol, usr);
 			
-			I_FX funcion =  new FX_ModificarRol(getDao(), rol, usr);
-			
-			return ejecutarFuncion(funcion);
-		}else{
-			JSON_Respuesta res =  new JSON_Respuesta(resul.getMensaje());
-			
-			return getGson().toJson(res);
-		}
+		return ejecutarFuncion(funcion);
 	}
 	
 	@Override
 	public String eliminar(Rol_VO rol, String usr) {
 		rol.setLogin(usr);
 		
-		RolDeUsuarioHE rolUsr = new RolDeUsuarioHE(rol);
-		rolUsr.setEstado("INACTIVO");
-		
-		R_SetRolDeUsuario resul = new DAO_RolHE().setRolDeUsuario(rolUsr);
-		
-		if (resul.getOk()){
+		I_FX funcion =  new FX_EliminarRol(getDao(), rol, usr);
 			
-			I_FX funcion =  new FX_EliminarRol(getDao(), rol, usr);
-			
-			return ejecutarFuncion(funcion);
-		}else{
-			JSON_Respuesta res =  new JSON_Respuesta(resul.getMensaje());
-			
-			return getGson().toJson(res);
-		}
+		return ejecutarFuncion(funcion);
 	}
 	
 	@Override

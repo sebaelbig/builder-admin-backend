@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -21,7 +22,7 @@ import ar.com.builderadmin.vo.turnos.estados.TurnoPresente_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:13 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("turno_presente")
 public class TurnoPresente extends TurnoReservado implements Serializable {
 

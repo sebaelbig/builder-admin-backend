@@ -6,12 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
@@ -23,7 +25,7 @@ import ar.com.builderadmin.vo.internacion.altas.AltaInternacion_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity @Table( name = "alta_internacion")
+@Entity @Table( name = "alta_internacion")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "alta_internacion", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("alta_internacion_base")

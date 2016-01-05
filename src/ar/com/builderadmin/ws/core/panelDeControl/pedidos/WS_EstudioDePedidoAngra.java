@@ -65,14 +65,6 @@ public class WS_EstudioDePedidoAngra extends WS_Abstracto {
 //		return admin_EstudioDePedidosAngra.buscar(pedido, getUsuarioAccion());
 //	}
 	
-	/* traigo tipo+nroDni del pacienteLogeado */
-	@RequestMapping(value = "/seguro/getDatosDePacienteWeb", produces = "application/json;charset=utf-8", method = RequestMethod.POST)
-	public String getDatosPacienteWeb(@RequestBody String jsonUsuario) {		
-		System.out.println("WS_Pedidos -> getDatosDePacienteWeb(" + jsonUsuario + ")");
-			
-		return admin_Usuarios.getDatosDePacienteWeb(jsonUsuario);
-	}
-	
 	@RequestMapping(value = "/seguro/listarPedidosPorFiltro", produces = "application/json;charset=utf-8", method = RequestMethod.POST)
 	public String listarPedidosPorFiltro(@RequestBody String jsonPedidoFiltrado) {		
 		System.out.println("WS_EstudioDePedidoAngra -> listarPedidosPorFiltro(" + jsonPedidoFiltrado + ")");

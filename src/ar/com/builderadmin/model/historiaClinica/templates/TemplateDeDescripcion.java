@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ import org.pojomatic.annotations.Property;
 
 import ar.com.builderadmin.model.I_Entidad;
 
-//@Entity
+@Entity
 @DiscriminatorColumn(name = "template_de_descripcion", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("template_de_descripcion_base")
 @Table( name = "template_de_descripcion")

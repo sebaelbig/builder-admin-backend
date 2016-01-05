@@ -158,17 +158,4 @@ public class DAO_Servicio extends
 
 	}
 
-	public Servicio_VO buscarPorNombre(String nombreServicio) {
-		this.resetQuery();
-		
-		this.setQueryCondiciones(" WHERE "+this.getIdClass()+".nombre = :nom ");
-		this.getCondiciones().put("nom", nombreServicio);
-		
-		List<Servicio_VO> srvs = this.listarTodo();
-		
-		this.resetQuery();
-		
-		return (srvs.isEmpty())?null:srvs.get(0);
-	}
-	
 }

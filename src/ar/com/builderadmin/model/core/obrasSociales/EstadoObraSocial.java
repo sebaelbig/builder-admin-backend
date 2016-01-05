@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.core.obrasSociales.EstadoObraSocial_VO;
@@ -22,7 +24,7 @@ import ar.com.builderadmin.vo.core.obrasSociales.EstadoObraSocial_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity @Table( name="estado_obra_social")
+@Entity @Table( name="estado_obra_social")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn(
 		name="estado_obra_social",

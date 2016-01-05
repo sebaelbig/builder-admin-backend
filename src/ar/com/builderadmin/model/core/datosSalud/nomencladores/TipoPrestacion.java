@@ -3,10 +3,12 @@ package ar.com.builderadmin.model.core.datosSalud.nomencladores;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 
@@ -15,7 +17,7 @@ import javax.persistence.Version;
  */
 
 
-//@Entity @Table( name="tipo_prestacion")
+@Entity @Table( name="tipo_prestacion")
 public class TipoPrestacion  implements Serializable{
 
 	/**

@@ -32,8 +32,8 @@ public class Rol_VO implements I_ValueObject<Rol> {
 	private String codigo;
 	
 	private Usuario_VO usuario;
-	
 	private TipoDeRol_VO tipoRol;
+	
 	private List<Perfil_VO> perfiles = new ArrayList<Perfil_VO>();
 	
 	private TipoIDHE_VO tipoId; 
@@ -44,8 +44,6 @@ public class Rol_VO implements I_ValueObject<Rol> {
 //	public static final String ACTIVO = "ACTIVO";
 //	public static final String INACTIVO = "INACTIVO";
 	
-//	private String id_rol; Ahora es el Codigo
-//	private String rol; Ahora es el Nombre
 	private String estado;
 	private String sitio;
 	private String prioridad;

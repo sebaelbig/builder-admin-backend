@@ -2,6 +2,7 @@ package ar.com.builderadmin.model.core.datosSalud;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ import ar.com.builderadmin.vo.core.datosSalud.TipoPrestacionHorus_VO;
  * @author svalle
  */
 
-//@Entity
+@Entity
 @Table( name = "tipo_prestacion_horus")
 public class TipoPrestacionHorus implements Serializable, I_Entidad {
 

@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.farmacia.medicamentos;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.Version;
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity
+@Entity
 @Table( name = "producto_sanitario")
 public class ProductoSanitario implements Serializable {
 

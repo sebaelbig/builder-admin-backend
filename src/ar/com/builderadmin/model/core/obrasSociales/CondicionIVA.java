@@ -3,12 +3,14 @@ package ar.com.builderadmin.model.core.obrasSociales;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-//@Entity @Table( name="Condicion_iva")
+@Entity @Table( name="Condicion_iva")
 public class CondicionIVA implements Serializable{
 
 	/**

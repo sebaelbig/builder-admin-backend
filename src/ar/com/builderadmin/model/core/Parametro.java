@@ -2,6 +2,7 @@ package ar.com.builderadmin.model.core;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ import ar.com.builderadmin.vo.core.Parametro_VO;
  *
  */
 
-//@Entity
+@Entity
 @Table( name="parametro")
 public class Parametro implements Serializable, I_Entidad {
 	

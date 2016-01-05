@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.core.obrasSociales.roles;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.model.core.obrasSociales.Producto_OS;
@@ -21,7 +23,7 @@ import ar.com.builderadmin.vo.core.obrasSociales.ProductoObraSocialPaciente_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity @Table( name = "producto_obra_social_paciente")
+@Entity @Table( name = "producto_obra_social_paciente")
 public class ProductoObraSocialPaciente implements Serializable {
 
 	/**

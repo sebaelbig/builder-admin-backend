@@ -66,13 +66,13 @@ public class DBPropertiesReader {
 		} catch (IOException e) {
 			//Si falla al abrir el archivo, cargo estos properties por default (no debería pasar)
 			properties.setProperty(DBPropertiesReader.URL_BDHE,
-					"jdbc:sybase:Tds:172.20.32.14:5000/desa");
-			properties.setProperty(DBPropertiesReader.USR_BDHE, "horus_ldap");
-			properties.setProperty(DBPropertiesReader.PASS_BDHE, "horus_1d4P");
+					"jdbc:sybase:Tds:31.220.22.106:5000/desa");
+			properties.setProperty(DBPropertiesReader.USR_BDHE, "builder_admin_sg");
+			properties.setProperty(DBPropertiesReader.PASS_BDHE, "bu1ld3r_4dm1n_sg");
 
 			properties.setProperty(DBPropertiesReader.SCHEMA_POSTGRES,
-					"horus_restfull_desa");
-			properties.setProperty(DBPropertiesReader.IP_HORUS, "172.20.32.249");
+					"sa_arquitectura_sg");
+			properties.setProperty(DBPropertiesReader.IP_HORUS, "31.220.22.106");
 		}
 		
 	}

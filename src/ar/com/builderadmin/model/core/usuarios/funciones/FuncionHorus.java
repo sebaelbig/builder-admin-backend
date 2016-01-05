@@ -1,6 +1,7 @@
 package ar.com.builderadmin.model.core.usuarios.funciones;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +11,7 @@ import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.FuncionHorus_VO;
 
-//@Entity
+@Entity
 @Table( name = "funcion_horus")
 public class FuncionHorus {
 

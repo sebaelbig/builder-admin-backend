@@ -34,10 +34,10 @@ public class FX_CrearUsuario implements I_FX {
 	private Usuario_VO usuario;
 	private String usuarioAccion;
 
-	public FX_CrearUsuario(DAO<Usuario_VO> dao, Usuario_VO sucursal,
+	public FX_CrearUsuario(DAO<Usuario_VO> dao, Usuario_VO user,
 			String nombreUsuario) {
 		setDao((DAO_Usuario) dao);
-		setUsuario(sucursal);
+		setUsuario(user);
 		setUsuarioAccion(nombreUsuario);
 		setEm(getDao().getEntityManager());
 	}

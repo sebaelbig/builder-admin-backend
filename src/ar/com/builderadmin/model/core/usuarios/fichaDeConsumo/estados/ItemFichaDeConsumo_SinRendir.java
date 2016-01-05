@@ -1,11 +1,12 @@
 package ar.com.builderadmin.model.core.usuarios.fichaDeConsumo.estados;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import ar.com.builderadmin.vo.core.usuarios.fichaDeConsumo.estados.EstadoItemFichaDeConsumo_VO;
 import ar.com.builderadmin.vo.core.usuarios.fichaDeConsumo.estados.ItemFichaDeConsumo_SinRendir_VO;
 
-//@Entity
+@Entity
 @DiscriminatorValue("item_sin_rendir")
 public class ItemFichaDeConsumo_SinRendir extends EstadoItemFichaDeConsumo {
 

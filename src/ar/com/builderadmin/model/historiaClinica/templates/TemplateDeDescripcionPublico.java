@@ -1,13 +1,14 @@
 package ar.com.builderadmin.model.historiaClinica.templates;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import ar.com.builderadmin.model.core.areas.servicios.Servicio;
 import ar.com.builderadmin.vo.historiaClinica.templates.TemplateDeDescripcionPublico_VO;
 
-//@Entity 
+@Entity 
 @DiscriminatorValue("template_de_descripcion_publico")
 public class TemplateDeDescripcionPublico extends TemplateDeDescripcion{
 

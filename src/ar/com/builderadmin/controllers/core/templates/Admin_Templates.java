@@ -104,7 +104,7 @@ public class Admin_Templates extends Admin_Abstracto<Template_VO> implements
 
 		DAO_Especialidad dao_esp = new DAO_Especialidad();
 		
-		return armarResultado(dao_esp.buscarEspecialidadPorNombre(valorABuscar),valorABuscar);
+		return armarResultado(dao_esp.buscarPorNombre(valorABuscar),valorABuscar);
 	
 	}
 

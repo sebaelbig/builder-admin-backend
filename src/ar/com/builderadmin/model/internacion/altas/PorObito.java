@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.internacion.altas;
 import java.io.Serializable;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import ar.com.builderadmin.vo.internacion.altas.AltaInternacion_VO;
 import ar.com.builderadmin.vo.internacion.altas.PorObito_VO;
@@ -12,7 +13,7 @@ import ar.com.builderadmin.vo.internacion.altas.PorObito_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:13 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("por_obito")
 public class PorObito extends AltaInternacion implements Serializable {
 

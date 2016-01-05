@@ -42,7 +42,6 @@ public class TemplateDeDescripcionPrivado_VO extends TemplateDeDescripcion_VO {
 		setIdPerfil(objeto.getPerfil().getId());
 		setTitulo(objeto.getTitulo());
 		setTexto(objeto.getTexto());
-		setUsuario(objeto.getPerfil().getRol().getUsuario().getNombreCompleto());
 		setNombreServicio(objeto.getPerfil().getServicio().getNombre());
 		setNombreUsuario(objeto.getPerfil().getRol().getUsuario().getNombreUsuario());
 		setIdServicio(objeto.getPerfil().getServicio().getId());

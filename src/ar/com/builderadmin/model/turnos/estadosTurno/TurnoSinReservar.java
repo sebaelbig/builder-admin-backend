@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import ar.com.builderadmin.model.core.datosSalud.Prestacion;
 import ar.com.builderadmin.model.core.obrasSociales.roles.ProductoObraSocialPaciente;
@@ -17,7 +18,7 @@ import ar.com.builderadmin.vo.turnos.estados.TurnoSinReservar_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:13 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("turno_sin_reservar")
 public class TurnoSinReservar extends EstadoTurno implements Serializable {
 

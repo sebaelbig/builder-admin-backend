@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.internacion.epicrisis;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import ar.com.builderadmin.vo.internacion.epicrisis.Epicrisis_VO;
  * @author carlalu
  * 
  */
-//@Entity
+@Entity
 public class Epicrisis implements I_Entidad, Serializable {
 
 	private static final long serialVersionUID = 1L;

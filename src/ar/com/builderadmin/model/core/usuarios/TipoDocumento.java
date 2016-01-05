@@ -3,10 +3,12 @@ package ar.com.builderadmin.model.core.usuarios;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 /**
@@ -16,7 +18,7 @@ import javax.persistence.Version;
  * @version 1.0
  * @created 02-Jul-2008 09:57:39 a.m.
  */
-//@Entity @Table( name = "tipo_documento")
+@Entity @Table( name = "tipo_documento")
 public class TipoDocumento implements Serializable {
 
 	/**

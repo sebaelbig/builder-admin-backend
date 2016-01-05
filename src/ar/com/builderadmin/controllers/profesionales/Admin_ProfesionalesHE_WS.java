@@ -16,7 +16,6 @@ import ar.com.builderadmin.dao.core.usuarios.roles.profesionales.DAO_Profesional
 import ar.com.builderadmin.fx.I_FX;
 import ar.com.builderadmin.fx.profesionales.FX_BuscarProfesionalHE;
 import ar.com.builderadmin.vo.core.usuarios.roles.profesionales.ProfesionalHE_VO;
-import ar.com.builderadmin.ws.respuestas.datosDelPaciente.R_ProfesionalesHE;
 
 @Controller
 //@Scope(value = WebApplicationContext.SCOPE_REQUEST)
@@ -101,9 +100,7 @@ public class Admin_ProfesionalesHE_WS extends Admin_Abstracto<ProfesionalHE_VO>
 			mat=-1;
 			nombre=parametro;
 		}
-		R_ProfesionalesHE resp=this.getDao().getProfesionalesPor(nombre,mat);
-		
-		return new Gson().toJson(resp);
+		return new Gson().toJson(parametro);
 	}
 	
 	public String getMatricula(String usuarioProfesional) {

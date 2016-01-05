@@ -13,19 +13,18 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import ar.com.builderadmin.dao.DAO;
 import ar.com.builderadmin.dao.DAO_Utils;
 import ar.com.builderadmin.dao.DBPropertiesReader;
-import ar.com.builderadmin.ldap.controllers.R_Autenticacion;
-import ar.com.builderadmin.model.core.usuarios.Usuario;
 import ar.com.builderadmin.model.core.usuarios.funciones.FuncionHorus;
 import ar.com.builderadmin.model.core.usuarios.perfiles.Perfil;
 import ar.com.builderadmin.model.core.usuarios.roles.Rol;
 import ar.com.builderadmin.vo.FuncionHorus_VO;
 import ar.com.builderadmin.vo.core.areas.Sucursal_VO;
 import ar.com.builderadmin.vo.core.areas.servicios.Servicio_VO;
-import ar.com.builderadmin.vo.core.usuarios.InfoIngresoUsuario;
+import ar.com.builderadmin.vo.core.usuarios.UsuarioBDSimpleAdapter;
 import ar.com.builderadmin.vo.core.usuarios.Usuario_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.Rol_VO;
 
@@ -51,7 +50,7 @@ public class DAO_Usuario extends DAO<Usuario_VO> {
 
 	@Override
 	protected Class getClazz() {
-		return Usuario.class;
+		return Usuario_VO.class;
 	}
 
 	@Override
@@ -200,28 +199,43 @@ public class DAO_Usuario extends DAO<Usuario_VO> {
 	 * Autentica los datos del usuario
 	 * 
 	 * 
-	 * @param em
 	 * @param nombreUsuario
 	 * @param pass
 	 * @return El usuario, si es que los datos son correctos, sino
 	 *         <span>null<span>
+	 *         
+	 *         
 	 */
-	public InfoIngresoUsuario autenticarUsuario(EntityManager em,
-			String nombreUsuario, String pass) {
-		InfoIngresoUsuario resul = new InfoIngresoUsuario();
+	public Usuario_VO autenticarUsuario(String nombreUsuario, String pass) {
+		Usuario_VO resul = new Usuario_VO();
 		try {
-
-			String json_infoIngresoUsario = em
-					.createNativeQuery(
-							"SELECT " + DBPropertiesReader.getEsquema()
-									+ ".sp_horus_get_validarusuario('"
-									+ nombreUsuario + "','" + pass + "')")
-					.getSingleResult().toString();
-
-			resul = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss")
-					.create()
-					.fromJson(json_infoIngresoUsario, InfoIngresoUsuario.class);
-
+			
+			String query = "SELECT fx_autenticar_usuario('"
+					+ nombreUsuario + "','" + pass + "')";
+			
+			DAO_Utils.info(log, "DAO_Usuario", "autenticar", getUsuarioAccion(), "Ejecuto: \n"+query);
+			Object fx_response = getEntityManager().createNativeQuery(query).getSingleResult();
+			
+			if (fx_response==null) 
+				fx_response = "[]";
+			
+			String json_usuario = fx_response.toString();
+			DAO_Utils.info(log, "DAO_Usuario", "autenticar", getUsuarioAccion(), "Respondió: \n"+json_usuario);
+			
+			List<Usuario_VO> usuarios = 
+					(List<Usuario_VO>) 
+						new GsonBuilder()
+						.setDateFormat("yyyy-MM-dd HH:mm:ss")
+						.registerTypeAdapter(Usuario_VO.class, new UsuarioBDSimpleAdapter())
+						.create()
+						.fromJson(json_usuario, new TypeToken<List<Usuario_VO>>() {}.getType());
+			
+			if (usuarios.size()==1){
+				resul = usuarios.get(0);
+			}else{
+				resul = null;
+			}
+			
 		} catch (NoResultException e) {
 			e.printStackTrace();
 			this.log.error(e.getMessage());
@@ -376,7 +390,7 @@ public class DAO_Usuario extends DAO<Usuario_VO> {
 	 * @return
 	 */
 	public List<FuncionHorus> buscarFuncionesDeUsuario(EntityManager em,
-			Usuario usr) {
+			Usuario_VO usr) {
 		List<FuncionHorus> fxs = null;
 		try {
 
@@ -427,7 +441,7 @@ public class DAO_Usuario extends DAO<Usuario_VO> {
 			Usuario_VO usr_vo) throws NoResultException {
 
 		String query = "SELECT new " + Usuario_VO.class.getCanonicalName()
-				+ "(u) FROM " + Usuario.class.getCanonicalName() + " u "
+				+ "(u) FROM " + Usuario_VO.class.getCanonicalName() + " u "
 				+ "	WHERE nro_documento = :nroDoc "
 				+ "		AND tipo_documento = :tipoDoc " +
 				"	AND borrado = false ";
@@ -575,7 +589,7 @@ public class DAO_Usuario extends DAO<Usuario_VO> {
 
 		int indiceFin = 1;
 		String nombreActual = nombre.substring(0, indiceFin);
-		String query = "FROM " + Usuario.class.getCanonicalName() + " "
+		String query = "FROM " + Usuario_VO.class.getCanonicalName() + " "
 				+ this.getIdClass() + " WHERE LOWER(" + this.getIdClass()
 				+ ".nombreUsuario) = :nombreusuario ";
 		Query q = getEntityManager().createQuery(query).setParameter(
@@ -642,55 +656,6 @@ public class DAO_Usuario extends DAO<Usuario_VO> {
 
 	}
 
-	/**/
-	public R_Autenticacion autenticarUsuario(String nombreUsuario, String pass) {
-		R_Autenticacion resul = new R_Autenticacion();
-
-		Connection con = getConexionHE();
-		try {
-			if (con != null) {
-				CallableStatement pstmt = con
-						.prepareCall("{call sp_horus_get_validarusuario_hc(?,?,?)}");
-
-				Object[] s = new Object[2];
-
-				s[0] = nombreUsuario;
-				s[1] = pass;
-
-				pstmt.setString(1, (String) s[0]);
-				pstmt.setString(2, (String) s[1]);
-				pstmt.registerOutParameter(3, -1);
-				pstmt.setString(3, "");
-
-				this.log.info(
-						"Llamando: 4.1.1 sp_horus_get_validarusuario_hc (#0,#1)",
-						new Object[] { s[0], s[1] });
-				pstmt.execute();
-				String json_sp_horus_get_validarusuario = pstmt.getString(3);
-
-				this.log.info("Resultado obtenido: "
-						+ json_sp_horus_get_validarusuario, new Object[0]);
-
-				resul = new GsonBuilder().create()
-						.fromJson(json_sp_horus_get_validarusuario,
-								R_Autenticacion.class);
-
-			}
-
-		} catch (NoResultException e) {
-			resul.setOk(Boolean.valueOf(false));
-			e.printStackTrace();
-			cerrarConexion(con);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			cerrarConexion(con);
-		} finally {
-			cerrarConexion(con);
-		}
-
-		return resul;
-	}
-	
 	public String getDatosPacienteWeb(String nombreUsuario){
 		/*Llamo al SP que me devuelve tipo+nroDni del usuario web*/
 		String resul=null;

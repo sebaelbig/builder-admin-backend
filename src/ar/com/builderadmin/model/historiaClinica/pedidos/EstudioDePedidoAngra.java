@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.historiaClinica.pedidos;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.Version;
 import org.pojomatic.annotations.PojomaticPolicy;
 import org.pojomatic.annotations.Property;
 
-//@Entity
+@Entity
 @Table(name="estudio_pedido_angra")
 public class EstudioDePedidoAngra {
 

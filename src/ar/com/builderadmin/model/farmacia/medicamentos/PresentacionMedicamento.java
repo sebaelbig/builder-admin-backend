@@ -3,10 +3,12 @@ package ar.com.builderadmin.model.farmacia.medicamentos;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.farmacia.medicamentos.PresentacionMedicamento_VO;
@@ -17,7 +19,7 @@ import ar.com.builderadmin.vo.farmacia.medicamentos.PresentacionMedicamento_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity @Table( name="presentacion_medicamento")
+@Entity @Table( name="presentacion_medicamento")
 @SequenceGenerator(sequenceName = "seq_presentacion_medicamento", name = "sequence", allocationSize=1)
 public class PresentacionMedicamento implements Serializable{
 

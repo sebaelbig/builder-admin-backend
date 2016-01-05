@@ -3,13 +3,14 @@ package ar.com.builderadmin.model.turnos.agenda.estados;
 import java.io.Serializable;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  * @author segarcia
  * @version 1.0
  * @created 03-Sep-2008 08:57:10 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("agendaModificada")
 public class AgendaModificada extends EstadoAgenda implements Serializable {
 

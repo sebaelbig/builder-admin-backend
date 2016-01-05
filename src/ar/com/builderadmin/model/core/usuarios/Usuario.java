@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,6 @@ import org.eclipse.persistence.annotations.JoinFetch;
 import org.eclipse.persistence.annotations.JoinFetchType;
 
 import ar.com.builderadmin.model.I_Entidad;
-import ar.com.builderadmin.model.core.usuarios.perfiles.Perfil;
 import ar.com.builderadmin.model.core.usuarios.perfiles.TipoDePerfil;
 import ar.com.builderadmin.model.core.usuarios.roles.Rol;
 import ar.com.builderadmin.model.core.usuarios.roles.TipoDeRol;
@@ -39,7 +39,7 @@ import ar.com.builderadmin.vo.core.usuarios.Usuario_VO;
  * @version 1.0
  * @created 02-Jul-2008 09:57:39 a.m.
  */
-//@Entity
+@Entity
 @Table
 public class Usuario implements Serializable, I_Entidad {
 
@@ -143,52 +143,10 @@ public class Usuario implements Serializable, I_Entidad {
 	private List<Rol> roles;
 
 	/**
-	 * Dias ausente del usuario
-	 */
-//	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
-//	private List<DiaAusente> diasAusente;
-
-	/**
-	 * Sexo del usuario
-	 */
-	@Column(length = 9)
-	private String sexo;
-
-	/**
-	 * Telefono laboral
-	 */
-	@Column(name = "otros_telefonos", length = 150)
-	private String otrosTelefonos;
-
-	/**
 	 * Telefono particular
 	 */
-	@Column(name = "telefono_particular", length = 15)
-	private String telefonoParticular;
-
-	/**
-	 * Telefono personal
-	 */
-	@Column(name = "telefono_celular", length = 15)
-	private String telefonoCelular;
-
-	private String nacionalidad;
-
-	/**
-	 * Obras Sociales
-	 */
-//	@OneToMany
-//	@JoinTable(name = "usuario_obra_social", joinColumns = @JoinColumn(name = "id_usuario"), inverseJoinColumns = @JoinColumn(name = "id_obra_social"), uniqueConstraints = @UniqueConstraint(columnNames = {
-//			"id_usuario", "id_obra_social" }))
-//	@JoinColumn(name = "obras_sociales")
-//	private List<ObraSocial> obrasSociales;
-
-	/**
-	 * Ficha de consumo del usuario
-	 */
-//	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-//	@JoinColumn(name = "id_ficha_de_consumo")
-//	private FichaDeConsumo fichaDeConsumo;
+	@Column(name = "telefonos", length = 150)
+	private String telefonos;
 
 	@Column(columnDefinition = "text")
 	private String foto;
@@ -197,29 +155,6 @@ public class Usuario implements Serializable, I_Entidad {
 	@Basic(fetch = FetchType.LAZY)
 	private byte[] binario;
 
-	@Column(name = "grupo_sanguineo")
-	private String grupoSanguineo;
-
-	@Column(name = "estado_civil")
-	private String estadoCivil;
-
-	/*****************************************/
-	/********** Datos de LDAP *************/
-	/*****************************************/
-    private String dn;
-
-    @Column(name = "nombre_completo")
-    private String nombreCompleto;
-
-    private String usuario;
-    
-    private String iniciales;
-    
-    @Column(name = "member_of")
-    private String memberOf;
-    
-    private String categoria;
-	
 	/*****************************************/
 	/********** Datos de ingreso *************/
 	/*****************************************/
@@ -239,8 +174,6 @@ public class Usuario implements Serializable, I_Entidad {
 	/**
 	 * Cantidad de intentos de ingreso
 	 */
-	@Column(name = "habilitado")
-	private Boolean habilitado = true;
 
 	@Column(name = "pregunta_seguridad")
 	private String preguntaSeguridad;
@@ -250,10 +183,7 @@ public class Usuario implements Serializable, I_Entidad {
 
 	// ------------- CONSTRUCTORES
 	public Usuario() {
-
 		roles = new ArrayList<Rol>();
-
-//		this.setFichaDeConsumo(new FichaDeConsumo(this));
 	}
 
 	/**
@@ -287,18 +217,13 @@ public class Usuario implements Serializable, I_Entidad {
 	 * @param telefonoParticular2 getTelefonoParticular
 	 * @param tipoDocumento2
 	 * @param nac
-	 * @param foto
-	 * @param estado
-	 * @param grupo
 	 */
 	public Usuario(Long id2, Integer version2, String apellido2,
 			String codigoPostal2, String contrasena2, String domicilio2,
 			String email2, Date fechaNacimiento2, String localidad2,
 			String nombres2, String nombreUsuario2, String nroCUIT2,
-			String nroDocumento2, String otrosTelefonos2, String sexo2,
-			String telefonoCelular2, String telefonoParticular2,
-			String tipoDocumento2, String nac, String foto, String estado,
-			String grupo) {
+			String nroDocumento2, String telefonoParticular2,
+			String tipoDocumento2, String nac) {
 		this.setId(id2);
 		this.setVersion(version2);
 		this.setApellido(apellido2);
@@ -312,18 +237,11 @@ public class Usuario implements Serializable, I_Entidad {
 		this.setNombreUsuario(nombreUsuario2);
 		this.setNroCUIT(nroCUIT2);
 		this.setNroDocumento(nroDocumento2);
-		this.setOtrosTelefonos(otrosTelefonos2);
-		this.setSexo(sexo2);
-		this.setTelefonoCelular(telefonoCelular2);
-		this.setTelefonoParticular(telefonoParticular2);
+		this.setTelefonos(telefonoParticular2);
 		this.setTipoDocumento(tipoDocumento2);
-//		this.setFichaDeConsumo(new FichaDeConsumo(this));
 
 		this.setFoto(foto);
-		// this.setBinario(Base64.decode(foto));
 
-		this.setEstadoCivil(estado);
-		this.setGrupoSanguineo(grupo);
 	}
 
 	// -------------- GETTERS Y SETTERS
@@ -439,18 +357,6 @@ public class Usuario implements Serializable, I_Entidad {
 		this.roles = roles;
 	}
 
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		if (sexo != null && !sexo.equals("")) {
-			this.sexo = sexo;
-		} else {
-			this.sexo = null;
-		}
-	}
-
 	@Override
 	public Long getId() {
 		return id;
@@ -491,15 +397,15 @@ public class Usuario implements Serializable, I_Entidad {
 		}
 	}
 
-	public String getTelefonoParticular() {
-		return telefonoParticular;
+	public String getTelefonos() {
+		return telefonos;
 	}
 
-	public void setTelefonoParticular(String telefonoParticular) {
+	public void setTelefonos(String telefonoParticular) {
 		if (telefonoParticular != null && !telefonoParticular.equals("")) {
-			this.telefonoParticular = telefonoParticular;
+			this.telefonos= telefonoParticular;
 		} else {
-			this.telefonoParticular = null;
+			this.telefonos= null;
 		}
 	}
 
@@ -511,29 +417,6 @@ public class Usuario implements Serializable, I_Entidad {
 //		this.obrasSociales = obrasSociales;
 //	}
 
-	public String getOtrosTelefonos() {
-		return otrosTelefonos;
-	}
-
-	public void setOtrosTelefonos(String otrosTelefonos) {
-		if (otrosTelefonos != null && !otrosTelefonos.equals("")) {
-			this.otrosTelefonos = otrosTelefonos;
-		} else {
-			this.otrosTelefonos = null;
-		}
-	}
-
-	public String getTelefonoCelular() {
-		return telefonoCelular;
-	}
-
-	public void setTelefonoCelular(String telefonoCelular) {
-		if (telefonoCelular != null && !telefonoCelular.equals("")) {
-			this.telefonoCelular = telefonoCelular;
-		} else {
-			this.telefonoCelular = null;
-		}
-	}
 
 	@Override
 	public boolean equals(Object object) {
@@ -645,13 +528,9 @@ public class Usuario implements Serializable, I_Entidad {
 		this.setNroCUIT(usr.getNroCUIT());
 		this.setNroDocumento(usr.getNroDocumento());
 		// this.setObrasSociales(obrasSociales);
-		this.setOtrosTelefonos(usr.getOtrosTelefonos());
-		this.setSexo(usr.getSexo());
-		this.setTelefonoCelular(usr.getTelefonoCelular());
-		this.setTelefonoParticular(usr.getTelefonoParticular());
+		this.setTelefonos(usr.getTelefonos());
 		this.setTipoDocumento(usr.getTipoDocumento());
 		this.setVersion(usr.getVersion());
-		this.setNacionalidad(usr.getNacionalidad());
 		this.setFoto(usr.getFoto());
 		this.setBinario(usr.getBinario());
 
@@ -734,55 +613,12 @@ public class Usuario implements Serializable, I_Entidad {
 
 	}
 
-	public Profesional obtenerRolProfesionalConPerfil(String nombrePerfil) {
-
-		Profesional prof = null;
-
-		for (Rol r : this.getRoles()) {
-
-			for (Perfil p : r.getPerfiles()) {
-
-				if (p.getNombre().equalsIgnoreCase(nombrePerfil)) {
-					prof = (Profesional) r;
-				}
-
-			}
-
-		}
-
-		return prof;
-	}
-
-	public String getNacionalidad() {
-		return nacionalidad;
-	}
-
-	public void setNacionalidad(String nacionalidad) {
-		this.nacionalidad = nacionalidad;
-	}
-
 	public String getFoto() {
 		return foto;
 	}
 
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}
-
-	public String getGrupoSanguineo() {
-		return grupoSanguineo;
-	}
-
-	public void setGrupoSanguineo(String grupoSanguineo) {
-		this.grupoSanguineo = grupoSanguineo;
-	}
-
-	public String getEstadoCivil() {
-		return estadoCivil;
-	}
-
-	public void setEstadoCivil(String estadoCivil) {
-		this.estadoCivil = estadoCivil;
 	}
 
 	public byte[] getBinario() {
@@ -820,22 +656,12 @@ public class Usuario implements Serializable, I_Entidad {
 			this.setNroCUIT(u.getNroCUIT());
 		if (u.getNroDocumento() != null)
 			this.setNroDocumento(u.getNroDocumento());
-		if (u.getOtrosTelefonos() != null)
-			this.setOtrosTelefonos(u.getOtrosTelefonos());
-		if (u.getSexo() != null)
-			this.setSexo(u.getSexo());
-		if (u.getTelefonoCelular() != null)
-			this.setTelefonoCelular(u.getTelefonoCelular());
-		if (u.getTelefonoParticular() != null)
-			this.setTelefonoParticular(u.getTelefonoParticular());
+		if (u.getTelefonos() != null)
+			this.setTelefonos(u.getTelefonos());
 		if (u.getTipoDocumento() != null)
 			this.setTipoDocumento(u.getTipoDocumento());
 		if (u.getFoto() != null)
 			this.setFoto(u.getFoto());
-		if (u.getEstadoCivil() != null)
-			this.setEstadoCivil(u.getEstadoCivil());
-		if (u.getGrupoSanguineo() != null)
-			this.setGrupoSanguineo(u.getGrupoSanguineo());
 
 	}
 
@@ -853,14 +679,6 @@ public class Usuario implements Serializable, I_Entidad {
 
 	public void setCantidadIntentos(Integer cantidadIntentos) {
 		this.cantidadIntentos = cantidadIntentos;
-	}
-
-	public Boolean getHabilitado() {
-		return habilitado;
-	}
-
-	public void setHabilitado(Boolean habilitado) {
-		this.habilitado = habilitado;
 	}
 
 	public String getPreguntaSeguridad() {
@@ -888,91 +706,4 @@ public class Usuario implements Serializable, I_Entidad {
 	public void setBorrado(Boolean b) {
 		this.borrado = b;
 	}
-
-	/**
-	 * @return the dn
-	 */
-	public String getDn() {
-		return dn;
-	}
-
-	/**
-	 * @param dn the dn to set
-	 */
-	public void setDn(String dn) {
-		this.dn = dn;
-	}
-
-	/**
-	 * @return the nombreCompleto
-	 */
-	public String getNombreCompleto() {
-		return nombreCompleto;
-	}
-
-	/**
-	 * @param nombreCompleto the nombreCompleto to set
-	 */
-	public void setNombreCompleto(String nombreCompleto) {
-		this.nombreCompleto = nombreCompleto;
-	}
-
-	/**
-	 * @return the usuario
-	 */
-	public String getUsuario() {
-		return usuario;
-	}
-
-	/**
-	 * @param usuario the usuario to set
-	 */
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	/**
-	 * @return the iniciales
-	 */
-	public String getIniciales() {
-		return iniciales;
-	}
-
-	/**
-	 * @param iniciales the iniciales to set
-	 */
-	public void setIniciales(String iniciales) {
-		this.iniciales = iniciales;
-	}
-
-	/**
-	 * @return the memberOf
-	 */
-	public String getMemberOf() {
-		return memberOf;
-	}
-
-	/**
-	 * @param memberOf the memberOf to set
-	 */
-	public void setMemberOf(String memberOf) {
-		this.memberOf = memberOf;
-	}
-
-	/**
-	 * @return the categoria
-	 */
-	public String getCategoria() {
-		return categoria;
-	}
-
-	/**
-	 * @param categoria the categoria to set
-	 */
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
-	}
-	
-	
-
 }

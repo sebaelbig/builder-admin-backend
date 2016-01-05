@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.core;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import org.pojomatic.annotations.Property;
 
 import ar.com.builderadmin.model.I_Entidad;
 
-//@Entity
+@Entity
 @Table( name="datos_accion")
 public class DatosAccion implements I_Entidad{
 

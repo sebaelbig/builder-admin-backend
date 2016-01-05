@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.model.core.usuarios.Usuario;
@@ -23,7 +25,7 @@ import ar.com.builderadmin.vo.core.usuarios.fichaDeConsumo.FichaDeConsumo_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity @Table( name = "ficha_de_consumo")
+@Entity @Table( name = "ficha_de_consumo")
 public class FichaDeConsumo implements Serializable {
 
 	/**

@@ -38,7 +38,6 @@ import ar.com.builderadmin.vo.core.usuarios.Usuario_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.pacientes.Paciente_VO;
 import ar.com.builderadmin.vo.turnos.PacienteTurno_VO;
 import ar.com.builderadmin.vo.turnos.Turno_VO;
-import ar.com.builderadmin.ws.respuestas.datosDelPaciente.PacienteHESimpleAdapter;
 
 @Service
 @SuppressWarnings("unchecked")
@@ -761,8 +760,7 @@ public class DAO_Paciente extends DAO<Paciente_VO> {
 	}
 
 	private Gson getGson() {
-		return new GsonBuilder().registerTypeAdapter(Paciente_VO.class,
-				new PacienteHESimpleAdapter()).create();
+		return new GsonBuilder().create();
 	}
 
 	public Paciente_VO recuperarEntidad(String tipoDniPaciente,

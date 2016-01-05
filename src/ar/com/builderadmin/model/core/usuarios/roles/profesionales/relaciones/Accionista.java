@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.core.usuarios.roles.profesionales.relaciones;
 import java.math.BigDecimal;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import ar.com.builderadmin.model.core.areas.servicios.Division;
 
@@ -11,7 +12,7 @@ import ar.com.builderadmin.model.core.areas.servicios.Division;
  * @version 1.0
  * @created 03-Sep-2008 08:57:10 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("accionista")
 public class Accionista extends RelacionConInstitucion {
 

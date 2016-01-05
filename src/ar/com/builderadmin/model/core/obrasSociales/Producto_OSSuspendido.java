@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,7 +16,7 @@ import ar.com.builderadmin.vo.core.obrasSociales.Producto_OSSuspendido_VO;
  * @created 19-Ene-2010.
  */
 
-//@Entity 
+@Entity 
 @DiscriminatorValue("producto_os_suspendido")
 public class Producto_OSSuspendido extends EstadoProducto_OS {
 

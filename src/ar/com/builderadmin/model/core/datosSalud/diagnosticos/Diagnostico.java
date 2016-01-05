@@ -3,10 +3,12 @@ package ar.com.builderadmin.model.core.datosSalud.diagnosticos;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.core.datosSalud.diagnosticos.Diagnostico_VO;
@@ -15,7 +17,7 @@ import ar.com.builderadmin.vo.core.datosSalud.diagnosticos.Diagnostico_VO;
  * @author svalle
  */
 
-//@Entity @Table( name = "diagnostico")
+@Entity @Table( name = "diagnostico")
 public class Diagnostico implements Serializable {
 
 	/**

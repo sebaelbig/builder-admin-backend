@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.model.turnos.BloqueTurno;
@@ -26,7 +28,7 @@ import ar.com.builderadmin.model.turnos.BloqueTurno;
  * @version 1.0
  * @created 03-Sep-2008 08:57:13 a.m.
  */
-//@Entity @Table(name="repeticion_bloque_turno")
+@Entity @Table(name="repeticion_bloque_turno")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn(
 		name="repeticion_bt",

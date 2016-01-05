@@ -1,10 +1,12 @@
 package ar.com.builderadmin.model.core.usuarios.roles.pacientes;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import ar.com.builderadmin.model.core.usuarios.Usuario;
 import ar.com.builderadmin.model.core.usuarios.roles.Rol;
@@ -15,7 +17,7 @@ import ar.com.builderadmin.vo.core.usuarios.roles.pacientes.PacienteAsistidor_VO
  * @version 1.0
  * @created 03-Sep-2008 08:57:12 a.m.
  */
-//@Entity @Table( name = "paciente_asistidor")
+@Entity @Table( name = "paciente_asistidor")
 public class PacienteAsistidor {
 
 	private Boolean borrado = false;public Boolean getBorrado(){return this.borrado;}public void setBorrado(Boolean b){this.borrado=b;} @Id

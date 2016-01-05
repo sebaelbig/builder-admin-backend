@@ -3,15 +3,17 @@ package ar.com.builderadmin.model.core.areas;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-//@Entity @Table( name = "dia_feriado")
+@Entity @Table( name = "dia_feriado")
 public class DiaFeriado implements Serializable {
 
 	/**

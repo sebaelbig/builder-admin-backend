@@ -3,8 +3,6 @@ package ar.com.builderadmin.vo.core.usuarios;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.com.builderadmin.ldap.modelo.UsuarioLDAP;
-import ar.com.builderadmin.ldap.vo.UsuarioLDAP_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.Rol_VO;
 
 
@@ -17,19 +15,13 @@ public class Usuario_FrontEnd {
 	
 	private List<Rol_VO> roles = new ArrayList<>();
 	
-	public Usuario_FrontEnd(UsuarioLDAP_VO usr, List<Rol_VO> rs) {
+	public Usuario_FrontEnd(Usuario_VO usr, List<Rol_VO> rs) {
 		this.setUsuario(usr.getUsuario());
 		this.setNombre(usr.getNombreCompleto());
 		this.setRoles( rs);
 	}
 	
-	public Usuario_FrontEnd(UsuarioLDAP_VO usr) {
-		this.setUsuario(usr.getUsuario());
-		this.setNombre(usr.getNombreCompleto());
-     	this.setRoles( usr.getRoles());
-	}
-	
-	public Usuario_FrontEnd(UsuarioLDAP usr) {
+	public Usuario_FrontEnd(Usuario_VO usr) {
 		this.setUsuario(usr.getUsuario());
 		this.setNombre(usr.getNombreCompleto());
 	}

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ import ar.com.builderadmin.model.core.datosSalud.TipoPrestacionHorus;
 import ar.com.builderadmin.model.historiaClinica.pedidos.Pedido;
 import ar.com.builderadmin.vo.historiaClinica.pedidos.estudios.EstudioDePedido_VO;
 
-//@Entity
+@Entity
 @Table( name="estudio_de_pedido")
 public class EstudioDePedido implements I_Entidad, I_Bloqueable{
 

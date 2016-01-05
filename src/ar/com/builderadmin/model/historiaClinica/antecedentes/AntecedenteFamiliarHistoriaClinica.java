@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,7 +40,7 @@ import ar.com.builderadmin.vo.historiaClinica.antecedentes.AntecedenteFamiliarHi
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity
+@Entity
 @Table( name = "antecedente_familiar_historia_clinica")
 @SequenceGenerator( sequenceName = "seq_antecedente_familiar_historia_clinica", name = "seq_antecedente_familiar_historia_clinica", allocationSize = 1)
 public class AntecedenteFamiliarHistoriaClinica {

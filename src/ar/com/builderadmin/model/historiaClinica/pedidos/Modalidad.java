@@ -1,6 +1,7 @@
 package ar.com.builderadmin.model.historiaClinica.pedidos;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import ar.com.builderadmin.model.I_Entidad;
 import ar.com.builderadmin.vo.historiaClinica.pedidos.Modalidad_VO;
 
 
-//@Entity
+@Entity
 @Table
 public class Modalidad implements I_Entidad{
 

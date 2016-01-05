@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import ar.com.builderadmin.ldap.modelo.UsuarioLDAP;
-import ar.com.builderadmin.ldap.vo.UsuarioLDAP_VO;
 import ar.com.builderadmin.model.core.usuarios.Usuario;
 import ar.com.builderadmin.model.core.usuarios.roles.Rol;
 import ar.com.builderadmin.vo.I_ValueObject;
-import ar.com.builderadmin.vo.core.usuarios.fichaDeConsumo.FichaDeConsumo_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.Rol_VO;
-import ar.com.builderadmin.ws.respuestas.datosDelPaciente.R_DatosPersonalesUsuario;
 
 public class Usuario_VO implements I_ValueObject<Usuario> {
 
@@ -20,10 +16,8 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 	private Boolean borrado = false;
 	
 	private String usuario;
-	private String socioNro;
 	private String apellido;
 	private String nombres;
-	private String sexo;
 	private String codigoPostal;
 	private String domicilio;
 	private String email;
@@ -31,33 +25,20 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 	private String localidad;
 	private String nroDocumento;
 	private String tipoDocumento;
-	private String permisos;
 
 	private List<Rol_VO> roles = new ArrayList<Rol_VO>();
 	private Boolean masculino = Boolean.valueOf(true);
-	private String telefonoParticular;
+	private String telefonos;
 	private Boolean borrar = Boolean.valueOf(false);
 	private byte[] binario;
 	private String foto;
 	private String edad;
-	private String nacionalidad;
-	private String grupoSanguineo;
-	private String estadoCivil;
 
-	/*****************************************/
-	/********** Datos de LDAP *************/
-	/*****************************************/
-    private String dn;
-
-    private String nombreCompleto;
-
-    private String iniciales;
-    
-    private String memberOf;
-    
-    private String categoria;
-    /*****************************************/
-    
+	private Date fechaUltimoIngreso = null;
+	private String respuestaSeguridad;
+	private String preguntaSeguridad;
+	private Integer cantidadIntentos = 0;
+	
 	/**
 	 * Contrasena de usuario en el sistema
 	 */
@@ -70,40 +51,8 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 	 */
 	private String nroCUIT;
 
-	/**
-	 * Telefono laboral
-	 */
-	private String otrosTelefonos;
-
-	/**
-	 * Telefono personal
-	 */
-	private String telefonoCelular;
-
-	/**
-	 * Ficha de consumo del paciente
-	 */
-	private FichaDeConsumo_VO fichaDeConsumo;
-
-	public Usuario_VO(R_DatosPersonalesUsuario resp) {
-		setApellido(resp.getApellido());
-		setCodigoPostal(resp.getCodigoPostal());
-		setDomicilio(resp.getDomicilio());
-		setEmail(resp.getEmail());
-		setFechaNacimiento(resp.getFechaNacimiento());
-		setLocalidad(resp.getLocalidad());
-		setMasculino(resp.getMasculino());
-		setNombreUsuario(resp.getUsuario());
-		setNroDocumento(resp.getNroDocumento());
-		setTipoDocumento(resp.getTipoDocumento());
-		setUsuario(resp.getUsuario());
-		setSocioNro(resp.getSocioNro());
-		setTelefonoParticular(resp.getTelefonoParticular());
-		setPermisos(resp.getPermisos());
-	}
 
 	public Usuario_VO() {
-		this.setFichaDeConsumo(new FichaDeConsumo_VO());
 	}
 
 	public Usuario_VO(Usuario u) {
@@ -112,28 +61,6 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 
 	public Usuario_VO(Usuario u, int profundidadActual, int profundidadDeseada) {
 		setObject(u, profundidadActual, profundidadDeseada);
-	}
-
-	public Usuario_VO(UsuarioLDAP usr) {
-		this.setApellido(usr.getApellido());
-		this.setCategoria(usr.getCategoria());
-		this.setEmail(usr.getEmail());
-		this.setIniciales(usr.getIniciales());
-		this.setMemberOf(usr.getMemberOf());
-		this.setNombreCompleto(usr.getNombreCompleto());
-		this.setUsuario(usr.getUsuario());
-		this.setNombreUsuario(usr.getUsuario());
-	}
-
-	public Usuario_VO(UsuarioLDAP_VO usr) {
-		try{ this.setApellido(usr.getApellido());} catch (NullPointerException nulle) {}
-		try{ this.setCategoria(usr.getCategoria());} catch (NullPointerException nulle) {}
-		try{ this.setEmail(usr.getEmail());} catch (NullPointerException nulle) {}
-		try{ this.setIniciales(usr.getIniciales());} catch (NullPointerException nulle) {}
-		try{ this.setMemberOf(usr.getMemberOf());} catch (NullPointerException nulle) {}
-		try{ this.setNombreCompleto(usr.getNombreCompleto());} catch (NullPointerException nulle) {}
-		try{ this.setUsuario(usr.getUsuario());} catch (NullPointerException nulle) {}
-		try{ this.setNombreUsuario(usr.getUsuario());} catch (NullPointerException nulle) {}
 	}
 
 	@Override
@@ -218,12 +145,12 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 		this.roles = roles;
 	}
 
-	public String getTelefonoParticular() {
-		return this.telefonoParticular;
+	public String getTelefonos() {
+		return telefonos;
 	}
 
-	public void setTelefonoParticular(String telefonoParticular) {
-		this.telefonoParticular = telefonoParticular;
+	public void setTelefonos(String telefonos) {
+		this.telefonos = telefonos;
 	}
 
 	@Override
@@ -348,36 +275,12 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 		this.edad = edad;
 	}
 
-	public String getNacionalidad() {
-		return this.nacionalidad;
-	}
-
-	public void setNacionalidad(String nacionalidad) {
-		this.nacionalidad = nacionalidad;
-	}
-
 	public String getFoto() {
 		return this.foto;
 	}
 
 	public void setFoto(String foto) {
 		this.foto = foto;
-	}
-
-	public String getGrupoSanguineo() {
-		return this.grupoSanguineo;
-	}
-
-	public void setGrupoSanguineo(String grupoSanguineo) {
-		this.grupoSanguineo = grupoSanguineo;
-	}
-
-	public String getEstadoCivil() {
-		return this.estadoCivil;
-	}
-
-	public void setEstadoCivil(String estadoCivil) {
-		this.estadoCivil = estadoCivil;
 	}
 
 	public byte[] getBinario() {
@@ -435,8 +338,8 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 		if (u.getNroDocumento() != null) {
 			setNroDocumento(u.getNroDocumento());
 		}
-		if (u.getTelefonoParticular() != null) {
-			setTelefonoParticular(u.getTelefonoParticular());
+		if (u.getTelefonos() != null) {
+			setTelefonos(u.getTelefonos());
 		}
 		if (u.getTipoDocumento() != null) {
 			setTipoDocumento(u.getTipoDocumento());
@@ -447,12 +350,6 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 		if (u.getFoto() != null) {
 			setFoto(u.getFoto());
 		}
-		if (u.getEstadoCivil() != null) {
-			setEstadoCivil(u.getEstadoCivil());
-		}
-		if (u.getGrupoSanguineo() != null) {
-			setGrupoSanguineo(u.getGrupoSanguineo());
-		}
 	}
 
 	public String getNombreUsuario() {
@@ -461,21 +358,6 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 
 	public void setNombreUsuario(String nuevoNombre) {
 		setUsuario(nuevoNombre);
-	}
-
-	/**
-	 * @return the permisos
-	 */
-	public String getPermisos() {
-		return permisos;
-	}
-
-	/**
-	 * @param permisos
-	 *            the permisos to set
-	 */
-	public void setPermisos(String permisos) {
-		this.permisos = permisos;
 	}
 
 	/**
@@ -491,22 +373,6 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 	 */
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
-	}
-
-	/**
-	 * @return the sexo
-	 */
-	public String getSexo() {
-		return sexo;
-	}
-
-	/**
-	 * @param sexo
-	 *            the sexo to set
-	 */
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-		this.masculino = (sexo!=null)?sexo.toLowerCase().startsWith("m")?true:false:false;
 	}
 
 	@Override
@@ -525,24 +391,11 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 		this.setNombreUsuario(u.getNombreUsuario());
 		this.setNroCUIT(u.getNroCUIT());
 		this.setNroDocumento(u.getNroDocumento());
-		this.setOtrosTelefonos(u.getOtrosTelefonos());
-		this.setSexo(u.getSexo());
-		this.setTelefonoCelular(u.getTelefonoCelular());
-		this.setTelefonoParticular(u.getTelefonoParticular());
+		this.setTelefonos(u.getTelefonos());
 		this.setTipoDocumento(u.getTipoDocumento());
 		this.setEdad(u.getEdad());
-
 		this.setFoto(u.getFoto());
-		this.setEstadoCivil(u.getEstadoCivil());
-		this.setGrupoSanguineo(u.getGrupoSanguineo());
 
-		this.setDn(u.getDn());
-		this.setNombreCompleto(u.getNombreCompleto());
-		this.setUsuario(u.getUsuario());
-		this.setIniciales(u.getIniciales());
-		this.setMemberOf(u.getMemberOf());
-		this.setCategoria(u.getCategoria());
-		
 		List<Rol_VO> roles = new ArrayList<Rol_VO>();
 		for (Rol r : u.getRoles()) {
 
@@ -550,12 +403,6 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 		}
 
 		this.setRoles(roles);
-
-		// this.setCantidadRolesInicales(this.getRoles().size());
-//		if (u.getFichaDeConsumo() != null) {
-//			this.setFichaDeConsumo(u.getFichaDeConsumo().toValueObject());
-//		}
-
 	}
 
 	@Override
@@ -575,24 +422,12 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 		this.setNombreUsuario(u.getNombreUsuario());
 		this.setNroCUIT(u.getNroCUIT());
 		this.setNroDocumento(u.getNroDocumento());
-		this.setOtrosTelefonos(u.getOtrosTelefonos());
-		this.setSexo(u.getSexo());
-		this.setTelefonoCelular(u.getTelefonoCelular());
-		this.setTelefonoParticular(u.getTelefonoParticular());
+		this.setTelefonos(u.getTelefonos());
 		this.setTipoDocumento(u.getTipoDocumento());
 		this.setEdad(u.getEdad());
-		this.setEstadoCivil(u.getEstadoCivil());
-		this.setGrupoSanguineo(u.getGrupoSanguineo());
 		this.setFoto(u.getFoto());
 		this.setBinario(u.getBinario());
 		
-		this.setDn(u.getDn());
-		this.setNombreCompleto(u.getNombreCompleto());
-		this.setUsuario(u.getUsuario());
-		this.setIniciales(u.getIniciales());
-		this.setMemberOf(u.getMemberOf());
-		this.setCategoria(u.getCategoria());
-
 		List<Rol_VO> roles = new ArrayList<Rol_VO>();
 		this.setRoles(roles);
 
@@ -605,11 +440,6 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 						r.toValueObject(profundidadActual + 1,
 								profundidadDeseada));
 			}
-
-//			if (u.getFichaDeConsumo() != null) {
-//				this.setFichaDeConsumo(u.getFichaDeConsumo().toValueObject(
-//						profundidadActual + 1, profundidadDeseada));
-//			}
 
 		}
 
@@ -627,19 +457,11 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 				this.getContrasena(), this.getDomicilio(), this.getEmail(),
 				this.getFechaNacimiento(), this.getLocalidad(),
 				this.getNombres(), this.getNombreUsuario(), this.getNroCUIT(),
-				this.getNroDocumento(), this.getOtrosTelefonos(),
-				this.getSexo(), this.getTelefonoCelular(),
-				this.getTelefonoParticular(), this.getTipoDocumento(),
-				this.getNacionalidad(), this.getFoto(), this.getEstadoCivil(),
-				this.getGrupoSanguineo());
+				this.getNroDocumento(), 
+				this.getTelefonos(), this.getTipoDocumento(),
+				this.getFoto()
+				);
 
-		u.setDn(this.getDn());
-		u.setNombreCompleto(this.getNombreCompleto());
-		u.setUsuario(this.getUsuario());
-		u.setIniciales(this.getIniciales());
-		u.setMemberOf(this.getMemberOf());
-		u.setCategoria(this.getCategoria());
-		
 		List<Rol> roles = new ArrayList<Rol>();
 		Rol rol = null;
 		for (Rol_VO r : this.getRoles()) {
@@ -701,52 +523,6 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 		this.nroCUIT = nroCUIT;
 	}
 
-	/**
-	 * @return the otrosTelefonos
-	 */
-	public String getOtrosTelefonos() {
-		return otrosTelefonos;
-	}
-
-	/**
-	 * @param otrosTelefonos
-	 *            the otrosTelefonos to set
-	 */
-	public void setOtrosTelefonos(String otrosTelefonos) {
-		this.otrosTelefonos = otrosTelefonos;
-	}
-
-	/**
-	 * @return the telefonoCelular
-	 */
-	public String getTelefonoCelular() {
-		return telefonoCelular;
-	}
-
-	/**
-	 * @param telefonoCelular
-	 *            the telefonoCelular to set
-	 */
-	public void setTelefonoCelular(String telefonoCelular) {
-		this.telefonoCelular = telefonoCelular;
-	}
-
-	/**
-	 * @return the fichaDeConsumo
-	 */
-	public FichaDeConsumo_VO getFichaDeConsumo() {
-		return fichaDeConsumo;
-	}
-
-	/**
-	 * @param fichaDeConsumo
-	 *            the fichaDeConsumo to set
-	 */
-	public void setFichaDeConsumo(FichaDeConsumo_VO fichaDeConsumo) {
-		this.fichaDeConsumo = fichaDeConsumo;
-	}
-
-
 	@Override
 	public Boolean getBorrado() {
 		return this.borrado;
@@ -756,95 +532,41 @@ public class Usuario_VO implements I_ValueObject<Usuario> {
 	public void setBorrado(Boolean b) {
 		this.borrado = b;
 	}
-	
-	public String getSocioNro() {
-		return this.socioNro;
-	}
 
-	public void setSocioNro(String socioNro) {
-		this.socioNro = socioNro;
-	}
-
-	/**
-	 * @return the dn
-	 */
-	public String getDn() {
-		return dn;
-	}
-
-	/**
-	 * @param dn the dn to set
-	 */
-	public void setDn(String dn) {
-		this.dn = dn;
-	}
-
-	/**
-	 * @return the nombreCompleto
-	 */
 	public String getNombreCompleto() {
-		return nombreCompleto;
+		return getApellido()+", "+getNombres();
 	}
 
-	/**
-	 * @param nombreCompleto the nombreCompleto to set
-	 */
-	public void setNombreCompleto(String nombreCompleto) {
-		this.nombreCompleto = nombreCompleto;
+	public Date getFechaUltimoIngreso() {
+		return fechaUltimoIngreso;
 	}
 
-	/**
-	 * @return the iniciales
-	 */
-	public String getIniciales() {
-		return iniciales;
+	public void setFechaUltimoIngreso(Date fechaUltimoIngreso) {
+		this.fechaUltimoIngreso = fechaUltimoIngreso;
 	}
 
-	/**
-	 * @param iniciales the iniciales to set
-	 */
-	public void setIniciales(String iniciales) {
-		this.iniciales = iniciales;
+	public String getRespuestaSeguridad() {
+		return respuestaSeguridad;
 	}
 
-	/**
-	 * @return the memberOf
-	 */
-	public String getMemberOf() {
-		return memberOf;
+	public void setRespuestaSeguridad(String respuestaSeguridad) {
+		this.respuestaSeguridad = respuestaSeguridad;
 	}
 
-	/**
-	 * @param memberOf the memberOf to set
-	 */
-	public void setMemberOf(String memberOf) {
-		this.memberOf = memberOf;
+	public String getPreguntaSeguridad() {
+		return preguntaSeguridad;
 	}
 
-	/**
-	 * @return the categoria
-	 */
-	public String getCategoria() {
-		return categoria;
+	public void setPreguntaSeguridad(String preguntaSeguridad) {
+		this.preguntaSeguridad = preguntaSeguridad;
 	}
 
-	/**
-	 * @param categoria the categoria to set
-	 */
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public Integer getCantidadIntentos() {
+		return cantidadIntentos;
 	}
 
-	public Rol_VO getRolMedico() {
-		
-		for (Rol_VO r : getRoles()) {
-			if (r.getCodigo().equalsIgnoreCase("MHE")){
-				return r;
-			}
-		}
-		
-		return null;
+	public void setCantidadIntentos(Integer cantidadIntentos) {
+		this.cantidadIntentos = cantidadIntentos;
 	}
-	
 	
 }

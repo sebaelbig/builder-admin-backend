@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -17,7 +18,7 @@ import ar.com.builderadmin.model.historiaClinica.episodios.Episodio;
  * @version 1.0
  * @created 03-Sep-2008 08:57:13 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("derivacion_cerrada")
 public class DerivacionCerrada extends EstadoDerivacion implements Serializable {
 

@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.internacion.habitaciones.camas.estadosCama;
 import java.io.Serializable;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import ar.com.builderadmin.model.internacion.Reserva;
 import ar.com.builderadmin.vo.internacion.habitaciones.camas.estadosCama.CamaLibre_VO;
@@ -13,7 +14,7 @@ import ar.com.builderadmin.vo.internacion.habitaciones.camas.estadosCama.EstadoC
  * @version 1.0
  * @created 03-Sep-2008 08:57:13 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("cama_libre")
 public class CamaLibre extends EstadoCama implements Serializable {
 

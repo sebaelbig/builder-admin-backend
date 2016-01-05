@@ -122,7 +122,7 @@ public class Admin_TipoDePerfil extends Admin_Abstracto<TipoDePerfil_VO> impleme
 
 		DAO_Especialidad dao_esp = new DAO_Especialidad();
 		
-		return armarResultado(dao_esp.buscarEspecialidadPorNombre(valorABuscar),valorABuscar);
+		return armarResultado(dao_esp.buscarPorNombre(valorABuscar),valorABuscar);
 	
 	}
 

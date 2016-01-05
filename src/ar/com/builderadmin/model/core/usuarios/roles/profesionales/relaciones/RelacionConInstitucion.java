@@ -6,12 +6,14 @@ import java.math.BigDecimal;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.model.core.areas.servicios.Division;
@@ -22,7 +24,7 @@ import ar.com.builderadmin.vo.core.usuarios.roles.profesionales.relaciones.Relac
  * @version 1.0
  * @created 03-Sep-2008 08:57:10 a.m.
  */
-//@Entity @Table( name = "relacion_con_institucion")
+@Entity @Table( name = "relacion_con_institucion")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_relacion", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("comun")

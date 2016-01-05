@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
@@ -28,7 +30,7 @@ import ar.com.builderadmin.vo.core.usuarios.roles.profesionales.ContratoProfesio
  * @version 1.0
  * @created 03-Sep-2008 08:57:10 a.m.
  */
-//@Entity @Table( name = "contrato_profesional")
+@Entity @Table( name = "contrato_profesional")
 public class ContratoProfesional implements Serializable {
 
 	/**

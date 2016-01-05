@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ import ar.com.builderadmin.vo.core.areas.CirculoDeConfianza_VO;
 /**
  * @author Sebastian Ariel Garcia
  */
-//@Entity 
+@Entity 
 @Table(name="circulo_de_confianza")
 @SequenceGenerator(sequenceName = "seq_circulo_de_confianza", name = "seq_circulo_de_confianza", allocationSize=1)
 public class CirculoDeConfianza implements Serializable{

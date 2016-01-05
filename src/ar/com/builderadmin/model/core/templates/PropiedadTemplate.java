@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.core.templates;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.Version;
 import ar.com.builderadmin.model.I_Entidad;
 import ar.com.builderadmin.vo.core.templates.PropiedadTemplate_VO;
 
-//@Entity
+@Entity
 @Table( name = "propiedad_template")
 public class PropiedadTemplate implements Serializable, I_Entidad {
 

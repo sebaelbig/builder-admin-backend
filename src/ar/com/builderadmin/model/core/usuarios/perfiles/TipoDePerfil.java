@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ import ar.com.builderadmin.vo.core.usuarios.perfiles.TipoDePerfil_VO;
  * @version 1.0
  * @created 02-Jul-2008 09:57:39 a.m.
  */
-//@Entity
+@Entity
 @Table( name = "tipo_de_perfil")
 public class TipoDePerfil implements Serializable, I_Entidad {
 

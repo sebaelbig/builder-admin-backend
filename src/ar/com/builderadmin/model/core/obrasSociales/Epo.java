@@ -1,5 +1,6 @@
 package ar.com.builderadmin.model.core.obrasSociales;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -11,7 +12,7 @@ import ar.com.builderadmin.vo.core.obrasSociales.Epo_VO;
  * @created 19-Ene-2010.
  */
 
-//@Entity
+@Entity
 public class Epo extends Subproducto_OS {
 
 	@ManyToOne

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ import ar.com.builderadmin.model.I_Entidad;
 import ar.com.builderadmin.model.core.areas.servicios.Servicio;
 import ar.com.builderadmin.vo.core.templates.Template_VO;
 
-//@Entity
+@Entity
 @Table( name = "template")
 public class Template implements Serializable, I_Entidad {
 

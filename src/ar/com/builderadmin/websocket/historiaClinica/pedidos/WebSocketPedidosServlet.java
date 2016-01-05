@@ -62,7 +62,7 @@ public class WebSocketPedidosServlet {
      * @param userSession the userSession which is opened.
      */
 	@OnOpen
-	protected void createWebSocketInbound(Session userSession){
+	public void createWebSocketInbound(Session userSession){
 //			String subProtocol,
 //			HttpServletRequest request) {
 //	

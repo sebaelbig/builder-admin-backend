@@ -62,7 +62,6 @@ import ar.com.builderadmin.vo.core.usuarios.Mensaje_VO;
 import ar.com.builderadmin.vo.historiaClinica.pedidos.Pedido_VO;
 import ar.com.builderadmin.vo.historiaClinica.pedidos.estudios.EstudioDePedido_VO;
 import ar.com.builderadmin.ws.RespuestaCorta;
-import ar.com.builderadmin.ws.historiaClinica.pedidos.R_RespuestaCharrua;
 
 /**
  * Componente para el manejo de las pedidos
@@ -584,18 +583,13 @@ public class Admin_Pedidos extends Admin_Abstracto<Pedido_VO> implements
 	 */
 	public void respuestaEnvioAWorklist(String response, String... idEstudioPedidoAngra) {
 		
-		R_RespuestaCharrua resul = new Gson().fromJson(response, R_RespuestaCharrua.class);
-		
 		//Actualizo el pedido Angra con la respuesta
 		EstudioDePedidoAngra pa = getDao_Pedido().recuperarEstudioPedidoAngra(Long.parseLong(idEstudioPedidoAngra[0]));
 		
 		pa.setRespuestaWorklist(response);
-		pa.setCodigo(resul.getCodigo());
-		pa.setDetalle(resul.getDetalle());
 		pa.setFechaRespuesta(new Date());
 		
 		getDao_Pedido().guardarEstudioPedidoAngra(pa);
-		DAO_Utils.info(log, "Admin_Pedidos", "respuestaEnvioAWorklist", "-interno-", resul.toString());
 		
 		//TODO Enviar por WebSocket el EPA completo
 	}
@@ -607,18 +601,13 @@ public class Admin_Pedidos extends Admin_Abstracto<Pedido_VO> implements
 	 */
 	public void errorRespuestaEnvioAWorklist(String response, String... idEstudioPedidoAngra) {
 		
-		R_RespuestaCharrua resul = new Gson().fromJson(response, R_RespuestaCharrua.class);
-		
 		//Actualizo el pedido Angra con la respuesta
 		EstudioDePedidoAngra pa = getDao_Pedido().recuperarEstudioPedidoAngra(Long.parseLong(idEstudioPedidoAngra[0]));
 		
 		pa.setRespuestaWorklist(response);
-		pa.setCodigo(resul.getCodigo());
-		pa.setDetalle(resul.getDetalle());
 		pa.setFechaRespuesta(new Date());
 		
 		getDao_Pedido().guardarEstudioPedidoAngra(pa);
-		DAO_Utils.error(log, "Admin_Pedidos", "errorRespuestaEnvioAWorklist", "-interno-", resul.toString());
 		
 		//TODO Enviar por WebSocket el EPA
 	}
@@ -628,7 +617,7 @@ public class Admin_Pedidos extends Admin_Abstracto<Pedido_VO> implements
 		
 		DAO_Servicio daoSrv = this.getDao_Pedido().getInstance(DAO_Servicio.class);
 		
-		Servicio_VO srv = daoSrv.buscarPorNombre(vo.getNombreServicio());
+		Servicio_VO srv = (Servicio_VO) daoSrv.buscarPorNombre(vo.getNombreServicio()).get(0);
 		
 		if ( srv!=null ){
 			vo.setIdServicio(srv.getId());

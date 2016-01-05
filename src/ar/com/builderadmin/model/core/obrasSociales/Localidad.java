@@ -1,10 +1,12 @@
 package ar.com.builderadmin.model.core.obrasSociales;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.core.obrasSociales.Localidad_VO;
@@ -15,7 +17,7 @@ import ar.com.builderadmin.vo.core.obrasSociales.Localidad_VO;
  * @created 19-Ene-2010.
  */
 
-//@Entity @Table
+@Entity @Table
 public class Localidad {
 
 	private Boolean borrado = false;public Boolean getBorrado(){return this.borrado;}public void setBorrado(Boolean b){this.borrado=b;} @Id 

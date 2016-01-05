@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -13,7 +14,7 @@ import ar.com.builderadmin.model.core.areas.servicios.Division;
 import ar.com.builderadmin.model.internacion.habitaciones.camas.Cama;
 import ar.com.builderadmin.vo.internacion.habitaciones.Habitacion_VO;
 
-//@Entity 
+@Entity 
 @DiscriminatorValue("division_habitacion")
 public class Habitacion extends Division implements Serializable {
 

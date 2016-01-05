@@ -3,6 +3,7 @@ package ar.com.builderadmin.model;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,7 @@ import ar.com.builderadmin.dao.DAO_Utils;
  * Estadistica
  * 
  */
-//@Entity
+@Entity
 public class Estadistica {
 
 	@Id

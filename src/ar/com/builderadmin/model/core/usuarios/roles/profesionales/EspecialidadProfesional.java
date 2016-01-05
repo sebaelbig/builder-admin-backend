@@ -3,6 +3,7 @@ package ar.com.builderadmin.model.core.usuarios.roles.profesionales;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ import ar.com.builderadmin.vo.core.usuarios.roles.profesionales.EspecialidadProf
  * @version 1.0
  * @created 03-Sep-2008 08:57:11 a.m.
  */
-//@Entity
+@Entity
 @Table( name = "especialidad_profesional")
 public class EspecialidadProfesional implements Serializable, I_Entidad {
 

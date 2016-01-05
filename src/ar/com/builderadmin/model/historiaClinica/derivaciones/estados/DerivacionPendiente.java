@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import ar.com.builderadmin.model.historiaClinica.episodios.Episodio;
 
@@ -12,7 +13,7 @@ import ar.com.builderadmin.model.historiaClinica.episodios.Episodio;
  * @version 1.0
  * @created 03-Sep-2008 08:57:13 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("derivacion_pendiente")
 public class DerivacionPendiente extends EstadoDerivacion implements
 		Serializable {

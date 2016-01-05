@@ -18,7 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import ar.com.builderadmin.utils.adapters.core.obrasSociales.Producto_OSSimpleAdapter;
 import ar.com.builderadmin.vo.core.obrasSociales.ProductoObraSocialPaciente_VO;
 import ar.com.builderadmin.vo.core.obrasSociales.Producto_OS_VO;
-import ar.com.builderadmin.vo.core.usuarios.UsuarioSimpleAdapter;
+import ar.com.builderadmin.vo.core.usuarios.UsuarioBDSimpleAdapter;
 import ar.com.builderadmin.vo.core.usuarios.Usuario_VO;
 import ar.com.builderadmin.vo.core.usuarios.perfiles.Perfil_VO;
 import ar.com.builderadmin.vo.core.usuarios.roles.TipoDeRol_VO;
@@ -109,7 +109,7 @@ public class PacienteSimpleAdapter implements JsonDeserializer<Paciente_VO>, Jso
 			if (elem != null){
 				
 				//deserializo el usuario
-				Usuario_VO usr = new UsuarioSimpleAdapter().deserialize(elem, typeOfT, context);
+				Usuario_VO usr = new UsuarioBDSimpleAdapter().deserialize(elem, typeOfT, context);
 				
 				pac.setUsuario(usr);
 			}

@@ -2,10 +2,12 @@ package ar.com.builderadmin.model.core.usuarios.roles.profesionales;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.vo.core.usuarios.roles.profesionales.CategoriaProfesional_VO;
@@ -15,7 +17,7 @@ import ar.com.builderadmin.vo.core.usuarios.roles.profesionales.CategoriaProfesi
  * @version 1.0
  * @created 03-Sep-2008 08:57:10 a.m.
  */
-//@Entity @Table( name = "categoria_profesional")
+@Entity @Table( name = "categoria_profesional")
 public class CategoriaProfesional implements Serializable {
 
 	/**

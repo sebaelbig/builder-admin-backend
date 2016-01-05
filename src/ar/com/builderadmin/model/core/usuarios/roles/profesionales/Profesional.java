@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 import ar.com.builderadmin.model.core.obrasSociales.ObraSocial;
 import ar.com.builderadmin.model.core.usuarios.Usuario;
@@ -15,7 +16,7 @@ import ar.com.builderadmin.vo.core.usuarios.roles.profesionales.Profesional_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:12 a.m.
  */
-//@Entity
+@Entity
 @DiscriminatorValue("rol_profesional")
 public class Profesional extends Rol implements Serializable {
 

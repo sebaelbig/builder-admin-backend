@@ -26,7 +26,7 @@ public enum TipoDeTratamiento {
         return tipo;
     }
 }
-////@Entity @Table
+//@Entity @Table
 //@SequenceGenerator(sequenceName = "seq_tipo_de_tratamiento", name = "sequence", allocationSize=1)
 //@Name("tipoDeTratamiento")
 //@Table(name="tipo_de_tratamiento")

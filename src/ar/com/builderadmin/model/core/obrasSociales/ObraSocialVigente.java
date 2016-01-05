@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,7 +17,7 @@ import ar.com.builderadmin.vo.core.obrasSociales.ObraSocialVigente_VO;
  * @version 1.0
  * @created 03-Sep-2008 08:57:12 a.m.
  */
-//@Entity 
+@Entity 
 @DiscriminatorValue("os_vigente")
 public class ObraSocialVigente extends EstadoObraSocial implements Serializable{
 

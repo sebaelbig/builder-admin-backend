@@ -7,13 +7,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @author segarcia
  * @version 1.0
  * @created 03-Sep-2008 08:57:10 a.m.
  */
-//@Entity @Table
+@Entity @Table
 @DiscriminatorValue("dia_calendario")
 public class DiaCalendario extends Dia implements Serializable{
 

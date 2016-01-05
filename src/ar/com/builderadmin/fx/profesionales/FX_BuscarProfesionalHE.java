@@ -55,8 +55,6 @@ public class FX_BuscarProfesionalHE implements I_FX {
 						"Ocurrió un error en la busqueda");
 				e.printStackTrace();
 			}
-		}else{
-			getDao().buscar(null, 1, 1);
 		}
 		return respuesta;
 	}

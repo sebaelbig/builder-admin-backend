@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ import org.pojomatic.annotations.Property;
 import ar.com.builderadmin.model.core.datosSalud.TipoPrestacionHorus;
 import ar.com.builderadmin.vo.historiaClinica.informes.Informe_VO;
 
-//@Entity
+@Entity
 @Table
 public class Informe {
 

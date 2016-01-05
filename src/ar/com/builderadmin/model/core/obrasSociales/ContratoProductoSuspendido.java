@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,7 +17,7 @@ import ar.com.builderadmin.vo.core.obrasSociales.ContratoProductoSuspendido_VO;
  * @created 19-Ene-2010.
  */
 
-//@Entity
+@Entity
 @DiscriminatorValue("contrato_producto_suspendido")
 public class ContratoProductoSuspendido extends EstadoContratoProducto implements Serializable{
 

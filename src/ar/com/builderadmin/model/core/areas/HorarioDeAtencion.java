@@ -3,12 +3,14 @@ package ar.com.builderadmin.model.core.areas;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
@@ -16,7 +18,7 @@ import javax.persistence.Version;
 import ar.com.builderadmin.model.core.areas.servicios.Servicio;
 import ar.com.builderadmin.vo.core.areas.HorarioDeAtencion_VO;
 
-//@Entity @Table( name="horario_de_atencion")
+@Entity @Table( name="horario_de_atencion")
 public class HorarioDeAtencion {
 
 

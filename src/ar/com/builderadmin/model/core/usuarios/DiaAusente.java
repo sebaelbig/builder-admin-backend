@@ -3,17 +3,19 @@ package ar.com.builderadmin.model.core.usuarios;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-//@Entity @Table( name = "dia_ausente")
+@Entity @Table( name = "dia_ausente")
 public class DiaAusente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
