@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:ldap="http://www.springframework.org/schema/ldap"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:ldap="http://www.springframework.org/schema/ldap"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -17,29 +15,28 @@
 
 	<!-- Detects annotations like @Component, @Service, @Controller, @Repository, 
 		@Configuration -->
-	<context:component-scan base-package="ar.com.builderadmin.controllers, ar.com.builderadmin.ws, ar.com.builderadmin.dao, ar.com.builderadmin.ldap" />
-	
-<!-- 	<context:property-placeholder location="/META-INF/ldap.properties" /> -->
-	
+	<context:component-scan
+		base-package="ar.com.builderadmin.controllers, ar.com.builderadmin.ws, ar.com.builderadmin.dao, ar.com.builderadmin.ldap" />
+
+	<!-- <context:property-placeholder location="/META-INF/ldap.properties" 
+		/> -->
+
 	<!-- Detects MVC annotations like @RequestMapping -->
 	<mvc:annotation-driven />
-	
-    <!-- Configuring interceptors based on URI -->
+
+	<!-- Configuring interceptors based on URI -->
 	<mvc:interceptors>
-		<beans:bean class="ar.com.builderadmin.security.interceptors.TokenAuthenticationInterceptor"></beans:bean>
-		<beans:bean class="ar.com.builderadmin.security.interceptors.WebContextHolderInterceptor"></beans:bean>
-		<beans:bean class="ar.com.builderadmin.security.interceptors.IECacheInterceptor"></beans:bean>
+		<beans:bean
+			class="ar.com.builderadmin.security.interceptors.TokenAuthenticationInterceptor"></beans:bean>
+		<beans:bean
+			class="ar.com.builderadmin.security.interceptors.WebContextHolderInterceptor"></beans:bean>
+		<beans:bean
+			class="ar.com.builderadmin.security.interceptors.IECacheInterceptor"></beans:bean>
 	</mvc:interceptors>
-	
-	<!-- 	LDAP 
-    <ldap:context-source id="contextSource"
-                         url="${horus.ldap.url}"
-                         base="${horus.ldap.base}" 
-                         username="${horus.ldap.userDn}"
-         				 password="${horus.ldap.password}"
-         				 />
-    <ldap:ldap-template ignore-partial-result="true"/>
-	-->
-    
+
+	<!-- LDAP <ldap:context-source id="contextSource" url="${horus.ldap.url}" 
+		base="${horus.ldap.base}" username="${horus.ldap.userDn}" password="${horus.ldap.password}" 
+		/> <ldap:ldap-template ignore-partial-result="true"/> -->
+
 
 </beans>

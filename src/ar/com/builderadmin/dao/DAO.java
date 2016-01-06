@@ -272,59 +272,59 @@ public abstract class DAO<T> {
 		}
 	}
 
-	public Connection getConexionHE() {
-		try {
+//	public Connection getConexionHE() {
+//		try {
+//
+//			Class.forName("com.sybase.jdbc4.jdbc.SybDataSource");
+//			
+//			//Levanto los parámetros necesarios para la configuración desde el Properties.
+////			String url = dbProperties.getProperty(DBPropertiesReader.URL_BDHE);
+////			String usr = dbProperties.getProperty(DBPropertiesReader.USR_BDHE);
+////			String pass = dbProperties.getProperty(DBPropertiesReader.PASS_BDHE);
+//
+//			DAO_Utils.info(log, "DAO", "getConexionHE", getUsuarioAccion(), "URL: " + url
+//					+ ", Usr: " + usr + ", Pass: " + pass);
+//
+//			Connection con = DriverManager.getConnection(url, usr, pass);
+//
+//			return con;
+//
+//		} catch (ClassNotFoundException e) {
+//			this.log.error("No se pudo conectar");
+//			return null;
+//		} catch (SQLException e) {
+//			this.log.error("No se pudo cerrar");
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
-			Class.forName("com.sybase.jdbc4.jdbc.SybDataSource");
-			
-			//Levanto los parámetros necesarios para la configuración desde el Properties.
-			String url = dbProperties.getProperty(DBPropertiesReader.URL_BDHE);
-			String usr = dbProperties.getProperty(DBPropertiesReader.USR_BDHE);
-			String pass = dbProperties.getProperty(DBPropertiesReader.PASS_BDHE);
-
-			DAO_Utils.info(log, "DAO", "getConexionHE", getUsuarioAccion(), "URL: " + url
-					+ ", Usr: " + usr + ", Pass: " + pass);
-
-			Connection con = DriverManager.getConnection(url, usr, pass);
-
-			return con;
-
-		} catch (ClassNotFoundException e) {
-			this.log.error("No se pudo conectar");
-			return null;
-		} catch (SQLException e) {
-			this.log.error("No se pudo cerrar");
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public Connection getConexionHE(String usr, String pass) {
-		try {
-
-			Class.forName("com.sybase.jdbc4.jdbc.SybDataSource");
-
-			String url = dbProperties.getProperty(DBPropertiesReader.URL_BDHE);
-
-			DAO_Utils.info(log, "DAO", "getConexionHE",getUsuarioAccion(), "URL: " + url
-					+ ", Usr: " + usr + ", Pass: " + pass);
-
-			Connection con = DriverManager.getConnection(url, usr, pass);
-
-			return con;
-
-		} catch (ClassNotFoundException e) {
-			this.log.error("No se pudo conectar");
-			return null;
-		} catch (SQLException e) {
-			this.log.error("No se pudo cerrar");
-			e.printStackTrace();
-		}
-
-		DAO_Utils.info(log, "DAO", "getConexionHE",getUsuarioAccion(), "ERROR: Usr: " + usr
-				+ ", Pass: " + pass);
-		return null;
-	}
+//	public Connection getConexionHE(String usr, String pass) {
+//		try {
+//
+//			Class.forName("com.sybase.jdbc4.jdbc.SybDataSource");
+//
+////			String url = dbProperties.getProperty(DBPropertiesReader.URL_BDHE);
+//
+//			DAO_Utils.info(log, "DAO", "getConexionHE",getUsuarioAccion(), "URL: " + url
+//					+ ", Usr: " + usr + ", Pass: " + pass);
+//
+//			Connection con = DriverManager.getConnection(url, usr, pass);
+//
+//			return con;
+//
+//		} catch (ClassNotFoundException e) {
+//			this.log.error("No se pudo conectar");
+//			return null;
+//		} catch (SQLException e) {
+//			this.log.error("No se pudo cerrar");
+//			e.printStackTrace();
+//		}
+//
+//		DAO_Utils.info(log, "DAO", "getConexionHE",getUsuarioAccion(), "ERROR: Usr: " + usr
+//				+ ", Pass: " + pass);
+//		return null;
+//	}
 
 	public static Connection getConexionLocal(Log log) {
 		try {
@@ -360,24 +360,24 @@ public abstract class DAO<T> {
 		}
 	}
 
-	public boolean probarConeccion() {
-		Connection con = null;
-		try {
-
-			Class.forName("com.sybase.jdbc4.jdbc.SybDataSource");
-
-			String urlBDHE = dbProperties
-					.getProperty(DBPropertiesReader.URL_BDHE);
-
-			con = DriverManager.getConnection(urlBDHE, BD_USER_HORUS_LDAP,
-					BD_PASS_HORUS_LDAP);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return con != null;
-	}
+//	public boolean probarConeccion() {
+//		Connection con = null;
+//		try {
+//
+//			Class.forName("com.sybase.jdbc4.jdbc.SybDataSource");
+////
+////			String urlBDHE = dbProperties
+////					.getProperty(DBPropertiesReader.URL_BDHE);
+//
+////			con = DriverManager.getConnection(urlBDHE, BD_USER_HORUS_LDAP,
+////					BD_PASS_HORUS_LDAP);
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return con != null;
+//	}
 
 	/**
 	 * Lista los elementos de tipo <T> limitando el resultado
@@ -528,95 +528,95 @@ public abstract class DAO<T> {
 	 * @param mail
 	 * @return
 	 */
-	public Boolean enviarMail(String asunto, String destinatario, String cuerpo )
-    {
-        R_EnvioMail resul = new R_EnvioMail();
-        
-        Connection con = getConexionHE();
-        String sp_horus_get_postulante = null;
-        System.out.println("Conectando con la bd espanol...");
-       
-        try
-        {
-            if(con != null)
-            {
-                CallableStatement pstmt = con.prepareCall("{call sp_registrar_mails_repo_java(?,?,?,?,?,?,?,?,?,?,?)}");
-                System.out.println("Llamando: 4.1.1 sp_registrar_mails_repo_java ()");
-                Object s[] = new Object[10];
-                //Mail origen
-                s[0] = "turnosweb@hospitalespanol.org.ar"; 
-                //Asunto
-                s[1] = asunto; 
-                //Cuerpo
-                s[2] = cuerpo;
-                //Mail destino
-                s[3] = destinatario;  
-                //CC
-                s[4] = null;
-                //CCO
-                s[5] = null;
-                //Adjunto
-                s[6] = null;
-                //Flag HTML (no se usa)
-                s[7] = null;
-                //Fecha envio
-                s[8] = null;
-                //Cantidad max de destinatarios
-                s[9] = 1;
-                
-                pstmt.setString(1, (String)s[0]);
-                pstmt.setString(2, (String)s[1]);
-                pstmt.setString(3, (String)s[2]);
-                pstmt.setString(4, (String)s[3]);
-                pstmt.setString(5, (String)s[4]);
-                pstmt.setString(6, (String)s[5]);
-                pstmt.setString(7, (String)s[6]);
-                pstmt.setString(8, (String)s[7]);
-                pstmt.setString(9, (String)s[8]);
-                pstmt.setInt(10, ((Integer)s[9]).intValue());
-                pstmt.setString(11, "");
-                pstmt.registerOutParameter(11, -1);
-                
-                log.info("Llamando: 4.2.1 sp_registrar_mails_repo_java (#0,#1,#2,#3,#4,#5,#6, ...)", new Object[] {
-                    s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], s[9]
-                });
-                
-                pstmt.execute();
-                
-                sp_horus_get_postulante = pstmt.getString(11);
-                
-                System.out.println("Resultado obtenido:  "+sp_horus_get_postulante);
-                
-                resul.setOk(true);
-                
-            } else {
-                System.out.println("No se pudo obtener una conexión");
-            }
-        } catch (Exception e1) {
-			e1.printStackTrace();
-			try {
-				con.rollback();
-				con.close();
-
-				this.log.info("Se cerro las conexiones", new Object[0]);
-			} catch (SQLException e) {
-				this.log.error("No se pudo cerrar", new Object[0]);
-				e.printStackTrace();
-			}
-		} finally {
-			try {
-				con.rollback();
-				con.close();
-
-				this.log.info("Se cerro las conexiones", new Object[0]);
-			} catch (SQLException e) {
-				this.log.error("No se pudo cerrar", new Object[0]);
-				e.printStackTrace();
-			}
-		}
-        
-		return resul.getOk();
-    }
+//	public Boolean enviarMail(String asunto, String destinatario, String cuerpo )
+//    {
+//        R_EnvioMail resul = new R_EnvioMail();
+//        
+//        Connection con = getConexionHE();
+//        String sp_horus_get_postulante = null;
+//        System.out.println("Conectando con la bd espanol...");
+//       
+//        try
+//        {
+//            if(con != null)
+//            {
+//                CallableStatement pstmt = con.prepareCall("{call sp_registrar_mails_repo_java(?,?,?,?,?,?,?,?,?,?,?)}");
+//                System.out.println("Llamando: 4.1.1 sp_registrar_mails_repo_java ()");
+//                Object s[] = new Object[10];
+//                //Mail origen
+//                s[0] = "turnosweb@hospitalespanol.org.ar"; 
+//                //Asunto
+//                s[1] = asunto; 
+//                //Cuerpo
+//                s[2] = cuerpo;
+//                //Mail destino
+//                s[3] = destinatario;  
+//                //CC
+//                s[4] = null;
+//                //CCO
+//                s[5] = null;
+//                //Adjunto
+//                s[6] = null;
+//                //Flag HTML (no se usa)
+//                s[7] = null;
+//                //Fecha envio
+//                s[8] = null;
+//                //Cantidad max de destinatarios
+//                s[9] = 1;
+//                
+//                pstmt.setString(1, (String)s[0]);
+//                pstmt.setString(2, (String)s[1]);
+//                pstmt.setString(3, (String)s[2]);
+//                pstmt.setString(4, (String)s[3]);
+//                pstmt.setString(5, (String)s[4]);
+//                pstmt.setString(6, (String)s[5]);
+//                pstmt.setString(7, (String)s[6]);
+//                pstmt.setString(8, (String)s[7]);
+//                pstmt.setString(9, (String)s[8]);
+//                pstmt.setInt(10, ((Integer)s[9]).intValue());
+//                pstmt.setString(11, "");
+//                pstmt.registerOutParameter(11, -1);
+//                
+//                log.info("Llamando: 4.2.1 sp_registrar_mails_repo_java (#0,#1,#2,#3,#4,#5,#6, ...)", new Object[] {
+//                    s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], s[9]
+//                });
+//                
+//                pstmt.execute();
+//                
+//                sp_horus_get_postulante = pstmt.getString(11);
+//                
+//                System.out.println("Resultado obtenido:  "+sp_horus_get_postulante);
+//                
+//                resul.setOk(true);
+//                
+//            } else {
+//                System.out.println("No se pudo obtener una conexión");
+//            }
+//        } catch (Exception e1) {
+//			e1.printStackTrace();
+//			try {
+//				con.rollback();
+//				con.close();
+//
+//				this.log.info("Se cerro las conexiones", new Object[0]);
+//			} catch (SQLException e) {
+//				this.log.error("No se pudo cerrar", new Object[0]);
+//				e.printStackTrace();
+//			}
+//		} finally {
+//			try {
+//				con.rollback();
+//				con.close();
+//
+//				this.log.info("Se cerro las conexiones", new Object[0]);
+//			} catch (SQLException e) {
+//				this.log.error("No se pudo cerrar", new Object[0]);
+//				e.printStackTrace();
+//			}
+//		}
+//        
+//		return resul.getOk();
+//    }
 	
 	public class R_EnvioMail {
 		private Boolean ok = false;

@@ -2,12 +2,12 @@
 <html>
 <head>
 
-	<title>Hello WebSocket</title>
-	
-	<script src="js/sockjs-0.3.min.js"></script>
-	<script src="js/stomp.min.js"></script>
-	
-	<script type="text/javascript">
+<title>Hello WebSocket</title>
+
+<script src="js/sockjs-0.3.min.js"></script>
+<script src="js/stomp.min.js"></script>
+
+<script type="text/javascript">
 		var stompClient = null;
 	
 		function setConnected(connected) {
@@ -61,7 +61,7 @@
 			response.appendChild(p);
 		}
 	</script>
-	
+
 </head>
 <body>
 
@@ -70,19 +70,19 @@
 			Javascript! Websocket relies on Javascript being enabled. Please
 			enable Javascript and reload this page!</h2>
 	</noscript>
-	
+
 	<div>
 		<div>
 			<button id="connect" onclick="connect();">Connect</button>
 			<button id="disconnect" disabled="disabled" onclick="disconnect();">Disconnect</button>
 		</div>
-		
+
 		<div id="conversationDiv">
 			<label>What is your name?</label><input type="text" id="name" />
 			<button id="sendName" onclick="sendName();">Send</button>
 			<p id="response"></p>
 		</div>
 	</div>
-	
+
 </body>
 </html>

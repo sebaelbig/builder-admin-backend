@@ -17,16 +17,16 @@ import ar.com.builderadmin.dao.core.DAO_Parametro;
  */
 public class DBPropertiesReader {
 
-	public final static String FILE_NAME = "sybase.properties";
+	public final static String FILE_NAME = "postgres.properties";
 
 	// Posibles propiedades del archivo "sybase.properties" ubicado en la
 	// carpeta 'conf' del Apache
 
 	// Turnos, Web, Quirofanos, Turnos, reservados
 	//Parametros de conexion HE 
-	public static final String URL_BDHE = "bdhe.driver.url";
-	public static final String USR_BDHE = "bdhe.driver.user";
-	public static final String PASS_BDHE = "bdhe.driver.password";
+//	public static final String URL_BDHE = "bdhe.driver.url";
+//	public static final String USR_BDHE = "bdhe.driver.user";
+//	public static final String PASS_BDHE = "bdhe.driver.password";
 	
 	public static final String JDBC_DRIVER = "ba.postgres.jdbc.driver.class_name";
 	public static final String JDBC_URL = "ba.postgres.jdbc.url";
@@ -65,10 +65,10 @@ public class DBPropertiesReader {
 		
 		} catch (IOException e) {
 			//Si falla al abrir el archivo, cargo estos properties por default (no debería pasar)
-			properties.setProperty(DBPropertiesReader.URL_BDHE,
-					"jdbc:sybase:Tds:31.220.22.106:5000/desa");
-			properties.setProperty(DBPropertiesReader.USR_BDHE, "builder_admin_sg");
-			properties.setProperty(DBPropertiesReader.PASS_BDHE, "bu1ld3r_4dm1n_sg");
+//			properties.setProperty(DBPropertiesReader.URL_BDHE,
+//					"jdbc:sybase:Tds:31.220.22.106:5000/desa");
+//			properties.setProperty(DBPropertiesReader.USR_BDHE, "builder_admin_sg");
+//			properties.setProperty(DBPropertiesReader.PASS_BDHE, "bu1ld3r_4dm1n_sg");
 
 			properties.setProperty(DBPropertiesReader.SCHEMA_POSTGRES,
 					"sa_arquitectura_sg");

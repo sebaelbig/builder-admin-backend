@@ -1,35 +1,32 @@
-<button class="ui button manitas"  
-	ng-click="conectar()" 
-	ng-show="!conectado" 
-	ng-class="{'loading': conectando }"><i class="terminal icon" ></i>Conectar</button>
+<button class="ui button manitas" ng-click="conectar()"
+	ng-show="!conectado" ng-class="{'loading': conectando }">
+	<i class="terminal icon"></i>Conectar
+</button>
 
 <div class="ui small piled feed segment" ng-show="conectado">
-	
+
 	<h4 class="ui azulHE block header">Actividad del sistema</h4>
-	
+
 	<!-- Informacion detallada de la alerta -->
-	<div class="event" ng-repeat="alerta in alertas" ng-class="{'fondoVerdoso': alerta.priority=='BAJA', 'fondoAmarillo': alerta.priority=='MEDIA', 'fondoNaranja': alerta.priority=='ALTA'}">
+	<div class="event" ng-repeat="alerta in alertas"
+		ng-class="{'fondoVerdoso': alerta.priority=='BAJA', 'fondoAmarillo': alerta.priority=='MEDIA', 'fondoNaranja': alerta.priority=='ALTA'}">
 
 		<div class="label">
-			<i class="info basic icon" ></i>{{alerta.priority}}
+			<i class="info basic icon"></i>{{alerta.priority}}
 		</div>
-		
+
 		<div class="content">
 
-      		<div class="date">
-        		{{alerta.str_timestamp}}
-       		</div>
-       		
-       		<div class="summary">
-       			{{alerta.description}}
-       		</div>
-       		
-       		<div class="extra text">
-       			<a>{{alerta.usuario}}</a>
-       		</div>
-       		
-      	</div>
-	
+			<div class="date">{{alerta.str_timestamp}}</div>
+
+			<div class="summary">{{alerta.description}}</div>
+
+			<div class="extra text">
+				<a>{{alerta.usuario}}</a>
+			</div>
+
+		</div>
+
 	</div>
 
 </div>
