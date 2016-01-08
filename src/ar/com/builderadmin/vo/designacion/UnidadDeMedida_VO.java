@@ -1,6 +1,7 @@
 package ar.com.builderadmin.vo.designacion;
 
 import ar.com.builderadmin.model.designacion.UnidadDeMedida;
+import ar.com.builderadmin.model.internacion.epicrisis.Epicrisis;
 import ar.com.builderadmin.vo.I_ValueObject;
 
 public class UnidadDeMedida_VO implements I_ValueObject<UnidadDeMedida>{
@@ -12,7 +13,12 @@ public class UnidadDeMedida_VO implements I_ValueObject<UnidadDeMedida>{
 	private String descripcion;
 	private boolean granel;
 	
-	
+	public UnidadDeMedida_VO(){
+		
+	}
+	public UnidadDeMedida_VO(UnidadDeMedida e){
+		this.setObject(e);
+	}
 	
 	public Long getId() {
 		return id;
@@ -43,40 +49,53 @@ public class UnidadDeMedida_VO implements I_ValueObject<UnidadDeMedida>{
 		this.granel = granel;
 	}
 
-	@Override
-	public void setId(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Boolean getBorrado() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setBorrado(Boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	@Override
 	public UnidadDeMedida toObject() {
-		// TODO Auto-generated method stub
-		return null;
+		UnidadDeMedida unidad = new UnidadDeMedida();
+		unidad.setBorrado(this.getBorrado());
+		unidad.setDescripcion(this.getDescripcion());
+		unidad.setId(this.getId());
+		unidad.setNombre(this.getNombre());
+		unidad.setGranel(this.getGranel());
+		unidad.setVersion(this.getVersion());
+		return unidad;
 	}
 
 	@Override
-	public void setObject(UnidadDeMedida paramT) {
-		// TODO Auto-generated method stub
-		
+	public void setObject(UnidadDeMedida u) {
+		this.setBorrado(u.getBorrado());
+		this.setGranel(u.getGranel());
+		this.setDescripcion(u.getDescripcion());
+		this.setNombre(u.getNombre());
+		this.setVersion(u.getVersion());
+		this.setId(u.getId());
 	}
 
 	@Override
 	public void setObject(UnidadDeMedida paramT, int profundidadActual,
 			int profundidadDeseada) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+
+	@Override
+	public void setId(Long id) {
+		this.id=id;
+		
+	}
+
+	@Override
+	public Boolean getBorrado() {
+		// TODO Auto-generated method stub
+		return this.borrado;
+	}
+
+	@Override
+	public void setBorrado(Boolean b) {
+		this.borrado=b;
 		
 	}
 

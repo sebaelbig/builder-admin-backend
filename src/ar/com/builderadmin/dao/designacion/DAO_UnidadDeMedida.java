@@ -5,18 +5,29 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import ar.com.builderadmin.dao.DAO;
+import ar.com.builderadmin.model.designacion.UnidadDeMedida;
 import ar.com.builderadmin.vo.designacion.UnidadDeMedida_VO;
-import ar.com.builderadmin.vo.historiaClinica.pedidos.Pedido_VO;
 
 @Service
 public class DAO_UnidadDeMedida extends DAO<UnidadDeMedida_VO>{
 	
 	UnidadDeMedida_VO unidadDeMedida;
+	
+	public DAO_UnidadDeMedida() {
+		this.setQueryEncabezado("SELECT new "
+				+ UnidadDeMedida_VO.class.getCanonicalName() + " ("
+				+ this.getIdClass() + ") FROM " + getClazz().getCanonicalName()
+				+ " " + this.getIdClass() + " ");
+
+		this.setQueryFinal("");
+
+		this.setQueryCondiciones("");
+
+	}
 
 	@Override
 	protected Class getClazz() {
-		// TODO Auto-generated method stub
-		return null;
+		return UnidadDeMedida.class;
 	}
 
 	@Override
@@ -36,7 +47,7 @@ public class DAO_UnidadDeMedida extends DAO<UnidadDeMedida_VO>{
 	public List<UnidadDeMedida_VO> listarUnidades(){
 		this.resetQuery();
 		
-		this.setQueryCondiciones(" WHERE "+this.getIdClass());
+		//this.setQueryCondiciones(" WHERE ");
 		
 		List<UnidadDeMedida_VO> unidades = this.listarTodo();
 		

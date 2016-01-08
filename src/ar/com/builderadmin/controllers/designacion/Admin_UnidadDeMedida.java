@@ -1,9 +1,13 @@
 package ar.com.builderadmin.controllers.designacion;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.google.gson.Gson;
 
 import ar.com.builderadmin.controllers.Admin_Abstracto;
 import ar.com.builderadmin.controllers.Admin_Alertas;
@@ -14,6 +18,7 @@ import ar.com.builderadmin.dao.DAO;
 import ar.com.builderadmin.dao.designacion.DAO_UnidadDeMedida;
 import ar.com.builderadmin.fx.I_FX;
 import ar.com.builderadmin.vo.designacion.UnidadDeMedida_VO;
+import ar.com.builderadmin.vo.internacion.epicrisis.Epicrisis_VO;
 
 @Controller
 public class Admin_UnidadDeMedida extends Admin_Abstracto<UnidadDeMedida_VO>{
@@ -142,8 +147,32 @@ public class Admin_UnidadDeMedida extends Admin_Abstracto<UnidadDeMedida_VO>{
 
 	public String listarUnidadDeMedida() {
 		List<UnidadDeMedida_VO> lista=this.getDao_UnidadDeMedida().listarUnidades();
-		return this.getGson().toJson(lista);
+		JSON_Paginador pag = new JSON_Paginador(lista);
+
+		JSON_Respuesta resp = new JSON_Respuesta();
+		resp.setPaginador(pag);
+		return this.getGson().toJson(resp);
 	}
+	
+	public String guardarUnidad(UnidadDeMedida_VO unidad, String usuarioAction) {
+
+		JSON_Respuesta jsonResp = new JSON_Respuesta();
+		try {
+			
+			this.getDao_UnidadDeMedida().guardar(unidad);
+
+			jsonResp.setMensaje("Se Guardo la unidad correctamente");
+			jsonResp.setOk(true);
+
+		} catch (Exception e) {
+
+			jsonResp.setOk(false);
+			jsonResp.setMensaje("ERROR al listar todos los: "
+					+ this.getClass().getSimpleName());
+		}
+		return new Gson().toJson(jsonResp);
+	}
+
 
 
 

@@ -16,7 +16,9 @@ import ar.com.builderadmin.ws.WS_Abstracto;
 @RestController
 @RequestMapping(value = "/unidadDeMedida", produces = "application/json;charset=utf-8")
 public class WS_UnidadDeMedida extends WS_Abstracto {
-		
+	
+	@Autowired
+	private Admin_UnidadDeMedida admin_unidadMedida;
 	/**
 	 * Ping de disponibilidad
 	 * 
@@ -30,43 +32,43 @@ public class WS_UnidadDeMedida extends WS_Abstracto {
 	/****************************************************************************************/
 	/* Templates Publicos */
 	/****************************************************************************************/
-	@Autowired
-	private Admin_UnidadDeMedida admin_unidadMedida;
 	
-	@RequestMapping(value = "/crear", produces = "application/json;charset=utf-8", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/guardar", produces = "application/json;charset=utf-8", method = RequestMethod.POST)
 	public String crear(@RequestBody String jsonPrivado) {
-		System.out.println("WS_Servicios -> crear(" + jsonPrivado + ")");
+		System.out.println("WS_UnidadDeMedida -> crear(" + jsonPrivado + ")");
 		
 		UnidadDeMedida_VO udm =getGson().fromJson(jsonPrivado, UnidadDeMedida_VO.class);
 		
-		return admin_unidadMedida.crear(udm, "carlalu");
+		return admin_unidadMedida.guardarUnidad(udm, "carlalu");
 	}
 
 	@RequestMapping(value = "/listarDeUnidadesDeMedida", produces = "application/json;charset=utf-8", method = RequestMethod.POST)
-	public String listarDeUsuario(@RequestBody String usuario) {
-		System.out.println("WS_Servicios -> listarDeUsuario()");
-
-		return admin_unidadMedida.listarUnidadDeMedida( );
+	public String listarDeUnidadesDeMedida() {
+		System.out.println("WS_UnidadDeMedida -> listarDeUnidadesDeMedida()");
+		String respuesta=admin_unidadMedida.listarUnidadDeMedida();
+		System.out.println("WS_UnidadDeMedida -> listarDeUnidadesDeMedida() responde:"+respuesta);
+		return respuesta;
 	}
 
-//	@RequestMapping(value = "/modificar", produces = "application/json;charset=utf-8", method = RequestMethod.PUT)
-//	public String modificar(@RequestBody String jsonPrivado) {
-//		System.out.println("WS_Servicios -> modificar(" + jsonPrivado + ")");
-//		
-//		Servicio_VO srv = getGson().fromJson(jsonPrivado, Servicio_VO.class);
-//		
-//		return admin_Servicios.modificar(srv, getUsuarioAccion());
-//	}
-//	
-//	@RequestMapping(value = "/eliminar", produces = "application/json;charset=utf-8", method = RequestMethod.DELETE)
-//	public String eliminar(@RequestBody String jsonPrivado) {
-//		System.out.println("WS_Servicios -> eliminar(" + jsonPrivado + ")");
-//
-//		Servicio_VO srv = getGson().fromJson(jsonPrivado, Servicio_VO.class);
-//
-//		return admin_Servicios.eliminar(srv, getUsuarioAccion());
-//	}
-//	
+	@RequestMapping(value = "/modificar", produces = "application/json;charset=utf-8", method = RequestMethod.PUT)
+	public String modificar(@RequestBody String jsonPrivado) {
+		System.out.println("WS_Servicios -> modificar(" + jsonPrivado + ")");
+		
+		UnidadDeMedida_VO udm = getGson().fromJson(jsonPrivado, UnidadDeMedida_VO.class);
+		
+		return admin_unidadMedida.modificar(udm,"carlalu");
+	}
+	
+	@RequestMapping(value = "/eliminar", produces = "application/json;charset=utf-8", method = RequestMethod.DELETE)
+	public String eliminar(@RequestBody String jsonPrivado) {
+		System.out.println("WS_Servicios -> eliminar(" + jsonPrivado + ")");
+
+		UnidadDeMedida_VO udm= getGson().fromJson(jsonPrivado, UnidadDeMedida_VO.class);
+
+		return admin_unidadMedida.eliminar(udm, "carlalu");
+	}
+	
 	private Gson getGson(){
 		return new Gson();
 	}

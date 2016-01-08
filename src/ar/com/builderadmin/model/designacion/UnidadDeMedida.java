@@ -1,5 +1,7 @@
 package ar.com.builderadmin.model.designacion;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +14,26 @@ import ar.com.builderadmin.model.I_Entidad;
 
 @Entity
 @Table(name = "unidad_de_medida")
-public class UnidadDeMedida implements I_Entidad {
+public class UnidadDeMedida implements I_Entidad, Serializable  {
+	
+	private static final long serialVersionUID = 1L;
+	private Boolean borrado = false;
+
+	public Boolean getBorrado() {
+		return this.borrado;
+	}
+
+	public void setBorrado(Boolean b) {
+		this.borrado = b;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	/**
 	 * Entity ID.
@@ -27,8 +48,12 @@ public class UnidadDeMedida implements I_Entidad {
 	private String nombre;
 	private String descripcion;
 	private boolean granel;
-	private boolean borrado;
 
+	public UnidadDeMedida() {
+		
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,7 +82,7 @@ public class UnidadDeMedida implements I_Entidad {
 		this.descripcion = descripcion;
 	}
 
-	public boolean isGranel() {
+	public boolean getGranel() {
 		return granel;
 	}
 
@@ -65,21 +90,6 @@ public class UnidadDeMedida implements I_Entidad {
 		this.granel = granel;
 	}
 
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	@Override
-	public Boolean getBorrado() {
-		// TODO Auto-generated method stub
-		return this.borrado;
-	}
-
-	@Override
-	public void setBorrado(Boolean b) {
-		this.borrado = b;
-
-	}
 
 }
