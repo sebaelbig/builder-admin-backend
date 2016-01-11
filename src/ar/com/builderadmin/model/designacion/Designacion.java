@@ -1,17 +1,39 @@
 package ar.com.builderadmin.model.designacion;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import ar.com.builderadmin.model.I_Entidad;
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
 
-@Table
-public class Designacion implements I_Entidad{
+import ar.com.builderadmin.model.I_Entidad;
+import ar.com.builderadmin.vo.designacion.Designacion_VO;
+
+@Entity
+@Table(name = "designacion")
+public class Designacion implements I_Entidad, Serializable  {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setBorrado(boolean borrado) {
+		this.borrado = borrado;
+	}
 	/**
 	 * Entity ID.
 	 */
@@ -25,7 +47,15 @@ public class Designacion implements I_Entidad{
 	private boolean borrado;
 	private String nombre;
 	private String descripcion;
+
+	@OneToOne(optional=false)
+	@JoinColumn(name = "unidadpordefault_id")
+	@JoinFetch(JoinFetchType.INNER)
 	private UnidadDeMedida unidadPorDefault;
+	
+	public Designacion(){
+		
+	}
 	
 	@Override
 	public Long getId() {
@@ -71,6 +101,10 @@ public class Designacion implements I_Entidad{
 	}
 	public void setUnidadPorDefault(UnidadDeMedida unidadPorDefault) {
 		this.unidadPorDefault = unidadPorDefault;
+	}
+	
+	public Designacion_VO toValueObject() {
+		return new Designacion_VO();
 	}
 	
 

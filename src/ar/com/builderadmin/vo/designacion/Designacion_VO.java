@@ -10,8 +10,15 @@ public class Designacion_VO implements I_ValueObject<Designacion>{
 	private Integer version;
 	private String nombre;
 	private String descripcion;
-	private UnidadDeMedida unidadPorDefault;
+	private UnidadDeMedida_VO unidadPorDefault;
 	private boolean borrado;
+	
+	public Designacion_VO(){
+		
+	}
+	public Designacion_VO(Designacion designacion) {
+		setObject(designacion);
+	}
 	
 	@Override
 	public Long getId() {
@@ -39,22 +46,8 @@ public class Designacion_VO implements I_ValueObject<Designacion>{
 		// TODO Auto-generated method stub
 		this.borrado=b;
 	}
-	@Override
-	public Designacion toObject() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void setObject(Designacion paramT) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void setObject(Designacion paramT, int profundidadActual,
-			int profundidadDeseada) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -67,13 +60,46 @@ public class Designacion_VO implements I_ValueObject<Designacion>{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public UnidadDeMedida getUnidadPorDefault() {
+	public UnidadDeMedida_VO getUnidadPorDefault() {
 		return unidadPorDefault;
 	}
-	public void setUnidadPorDefault(UnidadDeMedida unidadPorDefault) {
+	public void setUnidadPorDefault(UnidadDeMedida_VO unidadPorDefault) {
 		this.unidadPorDefault = unidadPorDefault;
 	}
 	
+	@Override
+	public Designacion toObject() {
+		Designacion unidad = new Designacion();
+		unidad.setBorrado(this.getBorrado());
+		unidad.setDescripcion(this.getDescripcion());
+		unidad.setId(this.getId());
+		unidad.setNombre(this.getNombre());
+		unidad.setVersion(this.getVersion());
+		unidad.setUnidadPorDefault(this.getUnidadPorDefault().toObject());
+		return unidad;
+	}
+
+	@Override
+	public void setObject(Designacion u) {
+		this.setBorrado(u.getBorrado());
+		this.setDescripcion(u.getDescripcion());
+		this.setNombre(u.getNombre());
+		this.setVersion(u.getVersion());
+		this.setId(u.getId());
+		this.setUnidadPorDefault(u.getUnidadPorDefault().toValueObject());
+		
+	}
+
+	@Override
+	public void setObject(Designacion u, int profundidadActual,
+			int profundidadDeseada) {
+		this.setBorrado(u.getBorrado());
+		this.setDescripcion(u.getDescripcion());
+		this.setNombre(u.getNombre());
+		this.setVersion(u.getVersion());
+		this.setId(u.getId());
+		this.setUnidadPorDefault(u.getUnidadPorDefault().toValueObject());
+	}
 	
 
 }

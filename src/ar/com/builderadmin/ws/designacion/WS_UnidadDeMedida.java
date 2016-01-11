@@ -29,10 +29,6 @@ public class WS_UnidadDeMedida extends WS_Abstracto {
 		return "WS_UnidadDeMedida -> ping";
 	}
 
-	/****************************************************************************************/
-	/* Templates Publicos */
-	/****************************************************************************************/
-	
 	
 	@RequestMapping(value = "/guardar", produces = "application/json;charset=utf-8", method = RequestMethod.POST)
 	public String crear(@RequestBody String jsonPrivado) {

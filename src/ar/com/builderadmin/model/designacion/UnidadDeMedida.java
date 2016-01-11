@@ -1,16 +1,24 @@
 package ar.com.builderadmin.model.designacion;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
+
 import ar.com.builderadmin.model.I_Entidad;
+import ar.com.builderadmin.vo.core.areas.servicios.Servicio_VO;
+import ar.com.builderadmin.vo.designacion.UnidadDeMedida_VO;
 
 @Entity
 @Table(name = "unidad_de_medida")
@@ -49,8 +57,21 @@ public class UnidadDeMedida implements I_Entidad, Serializable  {
 	private String descripcion;
 	private boolean granel;
 
+	@OneToMany(mappedBy = "unidadPorDefault")
+	@JoinFetch(JoinFetchType.OUTER)
+	private List<Designacion> designaciones;
+	
+	public List<Designacion> getDesignaciones() {
+		return designaciones;
+	}
+
+	public void setDesignaciones(List<Designacion> designaciones) {
+		this.designaciones = designaciones;
+	}
+
+	// ---------------- CONSTRUCTOR	
 	public UnidadDeMedida() {
-		
+		this.setDesignaciones(new ArrayList<Designacion>());
 	}
 	
 	
@@ -89,7 +110,9 @@ public class UnidadDeMedida implements I_Entidad, Serializable  {
 	public void setGranel(boolean granel) {
 		this.granel = granel;
 	}
-
+	public UnidadDeMedida_VO toValueObject() {
+		return new UnidadDeMedida_VO(this);
+	}
 
 
 }
