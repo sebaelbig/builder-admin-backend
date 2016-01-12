@@ -1,7 +1,6 @@
 package ar.com.builderadmin.vo.designacion;
 
 import ar.com.builderadmin.model.designacion.Designacion;
-import ar.com.builderadmin.model.designacion.UnidadDeMedida;
 import ar.com.builderadmin.vo.I_ValueObject;
 
 public class Designacion_VO implements I_ValueObject<Designacion>{

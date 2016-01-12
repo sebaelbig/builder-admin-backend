@@ -1,5 +1,7 @@
 package ar.com.builderadmin.model.unidadFuncional;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,10 +11,15 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.model.I_Entidad;
+import ar.com.builderadmin.vo.unidadFuncional.TipoUnidadFuncional_VO;
 
 @Entity
 @Table(name = "tipo_unidad_funcional")
-public class TipoDeUnidadFuncional implements I_Entidad {
+public class TipoUnidadFuncional implements I_Entidad, Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Entity ID.
 	 */
@@ -25,6 +32,10 @@ public class TipoDeUnidadFuncional implements I_Entidad {
 	private boolean borrado;
 	private String nombre;
 	private String descripcion;
+	
+	public TipoUnidadFuncional(){
+		
+	}
 
 	public Long getId() {
 		return id;
@@ -74,6 +85,10 @@ public class TipoDeUnidadFuncional implements I_Entidad {
 	@Override
 	public void setBorrado(Boolean b) {
 		this.borrado=b;
+	}
+	
+	public TipoUnidadFuncional_VO toValueObject() {
+		return new TipoUnidadFuncional_VO(this);
 	}
 
 }

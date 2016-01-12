@@ -4,11 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.eclipse.persistence.annotations.JoinFetch;
+import org.eclipse.persistence.annotations.JoinFetchType;
+
 import ar.com.builderadmin.model.I_Entidad;
+import ar.com.builderadmin.vo.unidadFuncional.UnidadFuncional_VO;
 
 @Entity @Table( name = "unidad_funcional")
 public class UnidadFuncional implements I_Entidad {
@@ -26,37 +32,31 @@ public class UnidadFuncional implements I_Entidad {
 	private boolean borrado;
 	private String nombre;
 	private String descripcion; 
-	private TipoDeUnidadFuncional tipoDeUnidad;
 	
-	@Override
+	@OneToOne(optional=false)
+	@JoinColumn(name = "tipounidad_id")
+	@JoinFetch(JoinFetchType.INNER)
+	private TipoUnidadFuncional tipoDeUnidad;
+	
+	public UnidadFuncional(){
+		
+	}
+	
+	public UnidadFuncional_VO toValueObject() {
+		return new UnidadFuncional_VO();
+	}
+	
 	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
-	@Override
 	public void setId(Long id) {
-		// TODO Auto-generated method stub
-		
+		this.id = id;
 	}
-	@Override
 	public Integer getVersion() {
-		// TODO Auto-generated method stub
-		return null;
+		return version;
 	}
-	@Override
-	public void setVersion(Integer id) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public Boolean getBorrado() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void setBorrado(Boolean b) {
-		// TODO Auto-generated method stub
-		
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 	public String getDescripcion() {
 		return descripcion;
@@ -70,18 +70,27 @@ public class UnidadFuncional implements I_Entidad {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public boolean isBorrado() {
-		return borrado;
-	}
 	public void setBorrado(boolean borrado) {
 		this.borrado = borrado;
 	}
-	public TipoDeUnidadFuncional getTipoDeUnidad() {
+	public TipoUnidadFuncional getTipoDeUnidad() {
 		return tipoDeUnidad;
 	}
-	public void setTipoDeUnidad(TipoDeUnidadFuncional tipoDeUnidad) {
+	public void setTipoDeUnidad(TipoUnidadFuncional tipoDeUnidad) {
 		this.tipoDeUnidad = tipoDeUnidad;
 	}
+	
+	@Override
+	public void setBorrado(Boolean b) {
+		// TODO Auto-generated method stub
+		this.borrado=b;
+	}
+	@Override
+	public Boolean getBorrado() {
+		// TODO Auto-generated method stub
+		return this.borrado;
+	}
+	
 	
 	
 

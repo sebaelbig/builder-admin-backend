@@ -7,15 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-
 import ar.com.builderadmin.controllers.designacion.Admin_Designacion;
-import ar.com.builderadmin.controllers.designacion.Admin_UnidadDeMedida;
-import ar.com.builderadmin.model.unidadFuncional.UnidadFuncional;
 import ar.com.builderadmin.vo.designacion.Designacion_VO;
-import ar.com.builderadmin.vo.designacion.UnidadDeMedida_VO;
-import ar.com.builderadmin.vo.unidadFuncional.UnidadFuncional_VO;
 import ar.com.builderadmin.ws.WS_Abstracto;
+
+import com.google.gson.Gson;
 
 @RestController
 @RequestMapping(value = "/designacion", produces = "application/json;charset=utf-8")
