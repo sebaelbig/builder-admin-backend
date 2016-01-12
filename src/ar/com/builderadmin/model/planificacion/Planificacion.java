@@ -1,19 +1,19 @@
 package ar.com.builderadmin.model.planificacion;
 
-import java.util.List;
+import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 import javax.persistence.Version;
 
 import ar.com.builderadmin.model.I_Entidad;
-import ar.com.builderadmin.model.unidadFuncional.UnidadFuncional;
+import ar.com.builderadmin.vo.planificacion.Planificacion_VO;
 
-@Table
-public class Planificacion  implements I_Entidad{
+@Entity
+public class Planificacion  implements I_Entidad, Serializable{
 	
 	/**
 	 * Entity ID.
@@ -23,13 +23,22 @@ public class Planificacion  implements I_Entidad{
 	@SequenceGenerator( name = "planificacion_seq", sequenceName = "planificacion_seq", allocationSize = 1)
 	private Long id;
 	
+	private static final long serialVersionUID = 1L;
+	
 	@Version
 	private Integer version;
 	private boolean borrado;
 	private String nombre;
 	private String descripcion;
-	private List<UnidadFuncional> unidades;
+//	private List<UnidadFuncional> unidades;
 	
+	public Planificacion(){
+		
+	}
+	
+	public Planificacion_VO toValueObject() {
+		return new Planificacion_VO(this);
+	}
 	
 	public Long getId() {
 		return id;
@@ -61,12 +70,12 @@ public class Planificacion  implements I_Entidad{
 	public void setBorrado(boolean borrado) {
 		this.borrado = borrado;
 	}
-	public List<UnidadFuncional> getUnidades() {
-		return unidades;
-	}
-	public void setUnidades(List<UnidadFuncional> unidades) {
-		this.unidades = unidades;
-	}
+//	public List<UnidadFuncional> getUnidades() {
+//		return unidades;
+//	}
+//	public void setUnidades(List<UnidadFuncional> unidades) {
+//		this.unidades = unidades;
+//	}
 	@Override
 	public Boolean getBorrado() {
 		return this.borrado;
